@@ -1,44 +1,45 @@
+<?php $page = $this->uri->segment(1);?>
 <header class="ease">
     <div class="contain">
         <div class="logo">
-            <a href="index.php">
+            <a href="<?=base_url()?>">
                 <img src="<?=asset('images/logo.png')?>" alt="">
             </a>
         </div>
         <div class="toggle"><span></span></div>
         <nav class="ease" nav>
             <ul id="nav" >
-                <li class="<?php if ($page == "index") {
+                <li class="<?php if ($page == "index" || $page == "") {
                                 echo 'active';
                             } ?>">
-                    <a href="index.php">Home</a>
+                    <a href="<?=base_url()?>">Home</a>
                 </li>
                 
                
-                <li class="<?php if ($page == "about") {
+                <li class="<?php if ($page == "about-us") {
                                 echo 'active';
                             } ?>">
-                    <a href="about.php">About Us</a>
+                    <a href="<?=base_url('about-us')?>">About Us</a>
                 </li>
-                <li class="<?php if ($page == "package") {
+                <li class="<?php if ($page == "packages") {
                                 echo 'active';
                             } ?>">
-                    <a href="package.php">Packages</a>
+                    <a href="<?=base_url('packages')?>">Packages</a>
                 </li>
-                <li class="<?php if ($page == "testimonial") {
+                <li class="<?php if ($page == "testimonials") {
                                 echo 'active';
                             } ?>">
-                    <a href="testimonial.php">Testimonials</a>
+                    <a href="<?=base_url('testimonials')?>">Testimonials</a>
                 </li>
-                <li class="<?php if ($page == "contact") {
+                <li class="<?php if ($page == "contact-us") {
                                 echo 'active';
                             } ?>">
-                    <a href="contact.php">Contact Us</a>
+                    <a href="<?=base_url('contact-us')?>">Contact Us</a>
                 </li>
-                <li class="<?php if ($page == "faq") {
+                <li class="<?php if ($page == "faqs") {
                                 echo 'active';
                             } ?>">
-                    <a href="faq.php">Faq's</a>
+                    <a href="<?=base_url('faqs')?>">Faq's</a>
                 </li>
                 <li class="hide-big <?php if ($page == "login") {
                                 echo 'active';

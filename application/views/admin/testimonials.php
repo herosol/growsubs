@@ -23,11 +23,12 @@
                                     </div>
                                     <div class="col-md-7">
                                         <div class="btn-group" id="status" data-toggle="buttons">
+                                            <label class="btn btn-default btn-off btn-sm <?php if($row->status == 0){echo 'active';}?>">
+                                            <input type="radio" value="0" name="status" <?php if($row->status == 0){echo 'checked';}?>><i class="fa fa-times" aria-hidden="true"></i></label>
+
                                             <label class="btn btn-default btn-on btn-sm <?php if($row->status == 1){echo 'active';}?>">
                                             <input type="radio" value="1" name="status"<?php if($row->status == 1){echo 'checked';}?>><i class="fa fa-check" aria-hidden="true"></i></label>
                                           
-                                            <label class="btn btn-default btn-off btn-sm <?php if($row->status == 0){echo 'active';}?>">
-                                            <input type="radio" value="0" name="status" <?php if($row->status == 0){echo 'checked';}?>><i class="fa fa-times" aria-hidden="true"></i></label>
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
@@ -71,33 +72,20 @@
                         <input type="text" name="name" id="name" value="<?php if (isset($row->name)) echo $row->name; ?>" class="form-control" autofocus required>
                     </div>
                     <div class="col-md-6">
-                        <label class="control-label" for="city"> City</label>
-                        <input type="text" name="city" id="city" value="<?php if (isset($row->city)) echo $row->city; ?>" class="form-control" required>
+                        <label class="control-label" for="designation"> Designation</label>
+                        <input type="text" name="designation" id="designation" value="<?php if (isset($row->designation)) echo $row->designation; ?>" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="control-label" for="rating"> Rating</label>
+                        <input type="text" name="rating" id="rating" value="<?php if (isset($row->rating)) echo $row->rating; ?>" class="form-control" required>
                     </div>
                 </div>
-                <!-- <div class="form-group">
-                    <div class="col-md-12">
-                        <label class="control-label" for="overview"> Overview</label>
-                        <input type="text" name="overview" id="overview" value="<?php if (isset($row->overview)) echo $row->overview; ?>" class="form-control" required>
-                    </div>
-                </div> -->
                 <div class="form-group">
                     <div class="col-md-12">
                         <label class="control-label" for="detail">  Detail</label>
                         <textarea name="detail" id="detail" rows="8" class="form-control" required><?= $row->detail ?></textarea>
                     </div>
                 </div>
-                <!-- <div class="form-group">
-                    <div class = "col-md-12">
-                        <img src = "<?= get_site_image_src('testimonials', $row->image, 'thumb_', true); ?>" height = "80"><br>
-                        <input type = "file" name = "image" id = "image" class = "form-control file2 inline btn btn-primary" data-label = "<i class='fa fa-upload'></i> Browse" />
-                        <div><br />
-                            <small style = "color:#F00;">* Best resolution is <strong>600 x 600</strong>.</small><br />
-                            <small style = " color:#F00;">* Allowed formats are <strong>JPG | JPEG | PNG</strong>.</small><br>
-                            <small style = "color:#F00;">* Image size maximum <strong>2MB</strong> allowed.</small>
-                        </div>
-                    </div>
-                </div> -->
                 <div class="col-md-12">                
                     <hr class="hr-short">
                     <div class="form-group text-right">

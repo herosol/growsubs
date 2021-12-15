@@ -2,19 +2,19 @@
 <html>
 
 <head>
-    <title>Grow Subs - Packages</title>
-    <?php require_once('includes/site-master.php'); ?>
+    <title><?= $page_title ?> — <?= $site_settings->site_name ?></title>  
+    <?php $this->load->view('includes/site-master.php'); ?>
 </head>
 
 <body id="home-page">
-<?php require_once('includes/header.php'); ?>
+<?php $this->load->view('includes/header.php'); ?>
 <main index>
     <section id="banner" class="flexBox sub-banners">
         <div class="flexDv">
             <div class="contain">
                 <div class="content">
-                    <h1>Out Packages and Plans</h1>
-                    <p>Do you need more endorsers and likes engagement on your YouTube recordings? Enter your YouTube channel URL to login and get begun!</p>
+                    <h1><?= $content['main_heading'] ?></h1>
+                    <p><?= $content['main_subheading'] ?></p>
                 </div>
             </div>
             
@@ -270,7 +270,7 @@
             </div>
         </section>
 </main>
-    <?php require_once('includes/footer.php'); ?>
+    <?php $this->load->view('includes/footer.php'); ?>
 </body>
 
 </html>

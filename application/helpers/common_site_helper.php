@@ -36,6 +36,14 @@ function countries()
     return $query->result();
 }
 
+function footer_content()
+{
+    global $CI;
+    $content_row = $CI->master->getRow('sitecontent', array('ckey'=>'footer'));
+    $content_row = json_decode(json_encode(unserialize($content_row->code)));
+    return (array)$content_row;
+}
+
 function states_by_country($country_id)
 {
     global $CI;

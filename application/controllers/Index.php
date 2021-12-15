@@ -18,7 +18,6 @@ class Index extends MY_Controller
         $data = $this->page->getPageContent('home');
         if ($data) {
             $this->data['content'] = unserialize($data->code);
-
             $this->data['meta_desc'] = json_decode($meta->content);
             $this->data['testimonials'] = $this->master->get_data_rows('testimonials', ['status' => '1']);
 

@@ -1,8 +1,8 @@
-<?php echo getBredcrum(ADMIN, array('#' => 'Sign up')); ?>
+<?php echo getBredcrum(ADMIN, array('#' => 'Sign Up')); ?>
 <?php echo showMsg(); ?>
 <div class="row margin-bottom-10">
     <div class="col-md-6">
-        <h2 class="no-margin"><i class="entypo-window"></i> Update <strong>Sign up</strong></h2>
+        <h2 class="no-margin"><i class="entypo-window"></i> Update <strong>Sign Up</strong></h2>
     </div>
     <div class="col-md-6 text-right">
         <!--        <a href="<?php echo base_url('admin/terms_conditions'); ?>" class="btn btn-lg btn-default"><i class="fa fa-arrow-left"></i> Cancel</a>-->
@@ -16,7 +16,7 @@
             <h3>Main Section</h3>
             <div class="form-group">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="panel panel-primary" data-collapsed="0">
                             <div class="panel-heading">
                                 <div class="panel-title">
@@ -44,31 +44,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-9">
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <label for="heading" class="control-label">Left Heading <span class="symbol required">*</span></label>
-                                <input type="text" name="heading" id="heading" value="<?= $row['heading'] ?>" class="form-control" required>
-                            </div>
-                            <div class="col-md-12">
-                                <label for="detail" class="control-label">Left Detail <span class="symbol ">*</span></label>
-                                <textarea name="detail" id="detail" rows="4" class="form-control"><?= $row['detail'] ?></textarea>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="col-md-6">
+                    <label for="main_heading" class="control-label">Form Heading <span class="symbol required">*</span></label>
+                    <input type="text" name="main_heading" id="main_heading" value="<?= $row['main_heading'] ?>" class="form-control" required>
                 </div>
-            </div>
-            <h3>Form Section</h3>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="form_heading1" class="control-label">Individual Form Heading <span class="symbol required">*</span></label>
-                        <input type="text" name="form_heading1" id="form_heading1" value="<?= $row['form_heading1'] ?>" class="form-control" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="form_heading2" class="control-label">Vendor Form Heading <span class="symbol required">*</span></label>
-                        <input type="text" name="form_heading2" id="form_heading2" value="<?= $row['form_heading2'] ?>" class="form-control" required>
-                    </div>
                 </div>
             </div>
             <div class="form-group">

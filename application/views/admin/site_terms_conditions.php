@@ -19,8 +19,12 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <label for="heading" class="control-label"> Heading <span class="symbol required">*</span></label>
-                                <input type="text" name="heading" id="heading" value="<?= $row['heading'] ?>" class="form-control" required>
+                                <label for="main_heading" class="control-label"> Heading <span class="symbol required">*</span></label>
+                                <input type="text" name="main_heading" id="main_heading" value="<?= $row['main_heading'] ?>" class="form-control" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="main_subheading" class="control-label"> Sub Heading <span class="symbol required">*</span></label>
+                                <textarea class="form-control" name="main_subheading" rows="4"><?= $row['main_subheading'] ?></textarea>
                             </div>
                         </div>
                     </div>

@@ -85,8 +85,11 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 ### PATH CONSTANTS
-defined('ADMIN')    OR define('ADMIN', 'admin');
+defined('ADMIN')       OR define('ADMIN', 'admin');
+defined('UPLOAD_PATH')  OR define('UPLOAD_PATH','./uploads/');
 defined('SITE_IMAGES')  OR define('SITE_IMAGES','./uploads/');
+defined('UPLOADIMAGE')  OR define('UPLOADIMAGE','./uploads/');
+defined('UPLOAD_VPATH') OR define('UPLOAD_VPATH','./v/');
 
 defined('UPLOADS')  OR define('UPLOADS','uploads/');
 defined('ASSETS')   OR define('ASSETS','assets/');

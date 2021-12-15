@@ -16,11 +16,34 @@
             <h3> Section 1 </h3>
             <div class="form-group">
                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label for="main_heading" class="control-label"> Heading <span class="symbol required">*</span></label>
+                                <input type="text" name="main_heading" value="<?= $row['main_heading'] ?>" class="form-control">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="main_subheading" class="control-label"> Sub Heading <span class="symbol required">*</span></label>
+                                <textarea class="form-control" name="main_subheading" rows="4"><?= $row['main_subheading'] ?></textarea>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="main_tags" class="control-label"> Tags (Enter comma separated) <span class="symbol required">*</span></label>
+                                <textarea class="form-control" name="main_tags" rows="4"><?= $row['main_tags'] ?></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <h3> Section 2</h3>
+            <div class="form-group">
+                <div class="row">
                     <div class="col-md-3">
                         <div class="panel panel-primary" data-collapsed="0">
                             <div class="panel-heading">
                                 <div class="panel-title">
-                                    Left Image
+                                    Right Image
                                 </div>
                                 <div class="panel-options">
                                     <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
@@ -49,215 +72,48 @@
                     <div class="col-md-9">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <label for="section1_heading" class="control-label"> Heading <span class="symbol required">*</span></label>
-                                <input type="text" name="section1_heading" value="<?= $row['section1_heading'] ?>" class="form-control">
+                                <label for="3sec_heading" class="control-label"> Left Heading <span class="symbol required">*</span></label>
+                                <input type="text" name="3sec_heading" value="<?= $row['3sec_heading'] ?>" class="form-control">
                             </div>
                             <div class="col-md-12">
-                                <label for="section1_desc" class="control-label"> Sub Heading <span class="symbol required">*</span></label>
-                                <textarea class="form-control ckeditor" name="section1_desc" rows="4"><?= $row['section1_desc'] ?></textarea>
+                                <label   label for="3sec_detail" class="control-label"> Left Detail <span class="symbol required">*</span></label>
+                                <textarea name="3sec_detail" rows="3" class="form-control ckeditor" required=""><?= $row['3sec_detail'] ?></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="control-label">Card Heading <span class="symbol required">*</span></label>
+                            <input type="text" name="3sec_card_heading1" value="<?= $row['3sec_card_heading1'] ?>" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="control-label"> Desciptions <span class="symbol required">*</span></label>
+                            <textarea name="3sec_card_tagline1" rows="4" class="form-control"><?= $row['3sec_card_tagline1'] ?></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="control-label">Card Heading <span class="symbol required">*</span></label>
+                            <input type="text" name="3sec_card_heading2" value="<?= $row['3sec_card_heading2'] ?>" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="control-label"> Desciptions <span class="symbol required">*</span></label>
+                            <textarea name="3sec_card_tagline2" rows="4" class="form-control"><?= $row['3sec_card_tagline2'] ?></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
 
-            <h3>Section 2</h3>
-            <div class="form-group">
-                <div class="col-md-6">
-                    <label for="" class="control-label"> Heading (use em tag for colored text)<span class="symbol required">*</span></label>
-                    <input type="text" name="section2_heading" value="<?= $row['section2_heading'] ?>" class="form-control">
-                </div>
-                <div class="col-md-6">
-                    <label for="section2_desc" class="control-label"> Sub Heading <span class="symbol required">*</span></label>
-                    <textarea class="form-control" name="section2_desc" rows="4"><?= $row['section2_desc'] ?></textarea>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <div class="row col-md-12">
-                            <div class="panel panel-primary" data-collapsed="0">
-                                <div class="panel-heading">
-                                    <div class="panel-title">
-                                        Deal Image
-                                    </div>
-                                    <div class="panel-options">
-                                        <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="fileinput fileinput-new" data-provides="fileinput"><input type="hidden"><input type="hidden">
-                                        <div class="fileinput-new thumbnail" style="max-width: 310px; height: 110px;" data-trigger="fileinput">
-                                            <img src="<?= !empty($row['image10']) ? getImageSrc(UPLOADIMAGE . "images/", $row['image10']) : 'http://placehold.it/1000x1200' ?>" alt="--">
-                                        </div>
-                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 320px; max-height: 160px; line-height: 6px;"></div>
-                                        <div>
-                                            <span class="btn btn-white btn-file">
-                                                <span class="fileinput-new">Select image</span>
-                                                <span class="fileinput-exists">Change</span>
-                                                <input type="file" name="image10">
-                                            </span>
-                                            <a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <label class="control-label"> Heading <span class="symbol required">*</span></label>
-                            <input type="text" name="deal1_heading" value="<?= $row['deal1_heading'] ?>" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <label class="control-label"> Desciptions <span class="symbol required">*</span></label>
-                            <textarea name="deal1_details" rows="4" class="form-control"><?= $row['deal1_details'] ?></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <div class="row col-md-12">
-                            <div class="panel panel-primary" data-collapsed="0">
-                                <div class="panel-heading">
-                                    <div class="panel-title">
-                                        Deal Image
-                                    </div>
-                                    <div class="panel-options">
-                                        <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="fileinput fileinput-new" data-provides="fileinput"><input type="hidden"><input type="hidden">
-                                        <div class="fileinput-new thumbnail" style="max-width: 310px; height: 110px;" data-trigger="fileinput">
-                                            <img src="<?= !empty($row['image11']) ? getImageSrc(UPLOADIMAGE . "images/", $row['image11']) : 'http://placehold.it/1000x1200' ?>" alt="--">
-                                        </div>
-                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 320px; max-height: 160px; line-height: 6px;"></div>
-                                        <div>
-                                            <span class="btn btn-white btn-file">
-                                                <span class="fileinput-new">Select image</span>
-                                                <span class="fileinput-exists">Change</span>
-                                                <input type="file" name="image11">
-                                            </span>
-                                            <a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <label class="control-label"> Heading <span class="symbol required">*</span></label>
-                            <input type="text" name="deal2_heading" value="<?= $row['deal2_heading'] ?>" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <label class="control-label"> Desciptions <span class="symbol required">*</span></label>
-                            <textarea name="deal2_details" rows="4" class="form-control"><?= $row['deal2_details'] ?></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <div class="row col-md-12">
-                            <div class="panel panel-primary" data-collapsed="0">
-                                <div class="panel-heading">
-                                    <div class="panel-title">
-                                        Deal Image
-                                    </div>
-                                    <div class="panel-options">
-                                        <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="fileinput fileinput-new" data-provides="fileinput"><input type="hidden"><input type="hidden">
-                                        <div class="fileinput-new thumbnail" style="max-width: 310px; height: 110px;" data-trigger="fileinput">
-                                            <img src="<?= !empty($row['image12']) ? getImageSrc(UPLOADIMAGE . "images/", $row['image12']) : 'http://placehold.it/1000x1200' ?>" alt="--">
-                                        </div>
-                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 320px; max-height: 160px; line-height: 6px;"></div>
-                                        <div>
-                                            <span class="btn btn-white btn-file">
-                                                <span class="fileinput-new">Select image</span>
-                                                <span class="fileinput-exists">Change</span>
-                                                <input type="file" name="image12">
-                                            </span>
-                                            <a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <label class="control-label"> Heading <span class="symbol required">*</span></label>
-                            <input type="text" name="deal3_heading" value="<?= $row['deal3_heading'] ?>" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <label class="control-label"> Desciptions <span class="symbol required">*</span></label>
-                            <textarea name="deal3_details" rows="4" class="form-control"><?= $row['deal3_details'] ?></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <div class="row col-md-12">
-                            <div class="panel panel-primary" data-collapsed="0">
-                                <div class="panel-heading">
-                                    <div class="panel-title">
-                                        Deal Image
-                                    </div>
-                                    <div class="panel-options">
-                                        <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="fileinput fileinput-new" data-provides="fileinput"><input type="hidden"><input type="hidden">
-                                        <div class="fileinput-new thumbnail" style="max-width: 310px; height: 110px;" data-trigger="fileinput">
-                                            <img src="<?= !empty($row['image13']) ? getImageSrc(UPLOADIMAGE . "images/", $row['image13']) : 'http://placehold.it/1000x1200' ?>" alt="--">
-                                        </div>
-                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 320px; max-height: 160px; line-height: 6px;"></div>
-                                        <div>
-                                            <span class="btn btn-white btn-file">
-                                                <span class="fileinput-new">Select image</span>
-                                                <span class="fileinput-exists">Change</span>
-                                                <input type="file" name="image13">
-                                            </span>
-                                            <a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <label class="control-label"> Heading <span class="symbol required">*</span></label>
-                            <input type="text" name="deal4_heading" value="<?= $row['deal4_heading'] ?>" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <label class="control-label"> Descriptions <span class="symbol required">*</span></label>
-                            <textarea name="deal4_details" rows="4" class="form-control"><?= $row['deal4_details'] ?></textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h2>Last Section</h2>
-            <div class="form-group">
-                <div class="col-md-12">
-                    <label for="last_heading" class="control-label"> Heading <span class="symbol required"></span></label>
-                    <input type="text" name="last_heading" id="last_heading" value="<?= $row['last_heading'] ?>" class="form-control">
-                </div>
-            </div>
             <div class="form-group">
                 <label for="field-1" class="col-sm-2 control-label "></label>
                 <div class="col-sm-10">

@@ -53,6 +53,15 @@ $route['default_controller'] = 'index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+# SITE PAGES
+$route['about-us'] = 'pages/about';
+$route['packages'] = 'pages/packages';
+$route['testimonials'] = 'pages/testimonials';
+$route['faqs'] = 'pages/faq';
+$route['contact-us'] = 'pages/contact';
+$route['terms-conditions'] = 'pages/terms_conditions';
+$route['privacy-policy'] = 'pages/privacy_policy';
+
 # ADMIN
 $route['admin/login']     = 'admin/index/login';
 $route['admin/logout']    = 'admin/index/logout';
