@@ -42,21 +42,6 @@
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <label class="control-label" for="type"> Type <span class="symbol required">*</span></label>
-                        <select name="type" id="type" class="form-control">
-                            <option value="1" <?php
-                            if (isset($row->type) && '1' == $row->type) {
-                                echo 'selected';
-                            }
-                            ?>>GENERAL</option>
-                            <option value="0" <?php
-                            if (isset($row->type) && '0' == $row->type) {
-                                echo 'selected';
-                            }
-                            ?>>MOST ASKED</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
                         <label class="control-label" for="sort_order"> Sort Order <span class="symbol required">*</span></label>
                         <input type="number" step="1" name="sort_order" value="<?php if (isset($row->sort_order)) echo $row->sort_order; ?>" class="form-control" required>
                     </div>
@@ -87,7 +72,6 @@
                 <tr>
                     <th width="10%" class="text-center">Sort Order</th>
                     <th>FAQ</th>
-                    <th width="10%" class="text-center">Type</th>
                     <th width="10%" class="text-center">Status</th>
                     <th width="12%" class="text-center">Action</th>
                 </tr>
@@ -97,14 +81,7 @@
                     <?php foreach ($rows as $row): ?>
                         <tr class="odd gradeX">
                             <td class="text-center"><?= $row->sort_order; ?></td>
-                            <td><b><?= $row->question; ?></b></td>
-                            <td><b>
-                                <?php if($row->type == '1'){
-                                    echo 'General';
-                                }else{
-                                    echo 'Most Asked'; ;
-                                } ?>
-                            </b></td>                        
+                            <td><b><?= $row->question; ?></b></td>                     
                             <td class="text-center"><?= getStatus($row->status); ?></td>
                             <td class="text-center">
                                 <a href="<?= site_url(ADMIN.'/faq/manage/'.$row->id); ?>">Edit</a> |

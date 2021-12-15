@@ -28,7 +28,7 @@ date_default_timezone_set('America/New_York');
 // exit(CI_VERSION);
 // error_reporting(-1);
 // error_reporting(E_ALL);
-// error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
 // ini_set('display errors', E_ALL);
 $config['base_url'] = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https": "http");
 $config['base_url'] .= "://".$_SERVER['HTTP_HOST'];
