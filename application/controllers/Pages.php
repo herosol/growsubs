@@ -51,7 +51,7 @@ class Pages extends MY_Controller
         if ($data) {
             $this->data['content'] = unserialize($data->code);
             $this->data['meta_desc'] = json_decode($meta->content);
-
+            $this->data['packages'] = $this->master->get_data_rows('packages', ['status'=> 1], 'ASC', 'no_of_views');
             $this->load->view('package/package', $this->data);
         } else {
             show_404();

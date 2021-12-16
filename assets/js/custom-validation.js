@@ -46,7 +46,7 @@ $(document).ready(function () {
 	$.validator.addMethod(
 		"lettersonly",
 		function (value, element) {
-			return this.optional(element) || /^[a-zA-Z]+$/i.test(value);
+			return this.optional(element) || /^[a-zA-Z ]+$/i.test(value);
 		},
 		"Letters and spaces only please"
 	);
@@ -95,6 +95,20 @@ $(document).ready(function () {
 		},
 		"Please enter all emails in valid format"
 	);
+	$.validator.addMethod(
+		"valid_youtube_channel",
+		function (value, element) {
+			var regExp =
+				/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+			var match = value.match(regExp);
+			if (match && match[2].length == 11) {
+				return true;
+			} else {
+				return false;
+			}
+		},
+		"Please enter a valid url"
+	);
 
 	$("#frmSearch").validate({
 		rules: {
@@ -141,18 +155,10 @@ $(document).ready(function () {
 		errorElement: "span",
 		errorClass: "validation-error",
 		rules: {
-			mem_fname: {
+			mem_name: {
 				required: true,
 				minlength: 2,
 				maxlength: 20,
-				noSpace: true,
-				lettersonly: true,
-			},
-			mem_lname: {
-				required: true,
-				minlength: 2,
-				maxlength: 20,
-				noSpace: true,
 				lettersonly: true,
 			},
 			mem_email: {
@@ -171,24 +177,19 @@ $(document).ready(function () {
 				required: true,
 				equalTo: "#password",
 			},
+			channel_url: {
+				required: true,
+			},
 			confirm: "required",
 		},
 		messages: {
-			mem_fname: {
-				required: "First name is required.",
-				minlength: "First Name should contains atleast 2 letters.",
-				maxlength: "First Name should not be greater than 20 letters.",
-				noSpace: "First Name should contains only letters and avoid space.",
-				lettersonly: "First Name should contains only letters.",
+			mem_name: {
+				required: "Name is required.",
+				minlength: "Name should contains atleast 2 letters.",
+				maxlength: "Name should not be greater than 20 letters.",
+				lettersonly: "Name should contains only letters.",
 			},
-			mem_lname: {
-				required: "Last name is required.",
-				minlength: "Last Name should contains atleast 2 letters.",
-				maxlength: "Last Name should not be greater than 20 letters.",
-				noSpace: "Last Name should contains only letters and avoid space.",
-				lettersonly: "Last Name should contains only letters.",
-			},
-			email: {
+			mem_email: {
 				required: "Email is required.",
 				email: "Please enter a valid email.",
 			},
@@ -202,6 +203,9 @@ $(document).ready(function () {
 			cpassword: {
 				required: "Confirm Password is required.",
 				equalTo: "Confirm password must be the as the password.",
+			},
+			channel_url: {
+				required: "Please enter url of your channel.",
 			},
 			confirm: {
 				required: "Please accept our terms and conditions.",

@@ -41,29 +41,29 @@
                             } ?>">
                     <a href="<?=base_url('faqs')?>">Faq's</a>
                 </li>
-                <li class="hide-big <?php if ($page == "login") {
+                <li class="hide-big <?php if ($page == "signin") {
                                 echo 'active';
                             } ?>">
-                    <a href="login.php" class="webBtn">Login</a>
+                    <a href="<?=base_url('signin')?>" class="webBtn">Signin</a>
                 </li>
                 <li class="hide-big <?php if ($page == "signup") {
                                 echo 'active';
                             } ?>">
-                    <a href="signup.php" class="webBtn">Signup</a>
+                    <a href="<?=base_url('signup')?>" class="webBtn">Signup</a>
                 </li>
             </ul>
             
         </nav>
         <ul id="cta">
-               <li class="<?php if ($page == "login") {
+               <li class="<?php if ($page == "signin") {
                                 echo 'active';
                             } ?>">
-                    <a href="login.php">Login</a>
+                    <a href="<?=base_url('signin')?>">Signin</a>
                 </li>
                 <li class="<?php if ($page == "signup") {
                                 echo 'active';
                             } ?>">
-                    <a href="signup.php">Signup</a>
+                    <a href="<?=base_url('signup')?>">Signup</a>
                 </li>
                
             </ul>

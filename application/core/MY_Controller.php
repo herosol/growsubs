@@ -11,15 +11,14 @@ class MY_Controller extends CI_Controller {
         $this->data['page']          = $this->uri->segment(1);
     }
 
-    public function isMemLogged($type, $is_verified = true, $route_check = '', $type_arr = array('buyer', 'vendor'))
+    public function isMemLogged($is_verified = true)
     {
-        if (intval($this->session->mem_id) < 1 || !$this->session->has_userdata('mem_type') || $this->session->mem_type != $type) 
+        if (intval($this->session->mem_id) < 1) 
         {
             $remember_cookie = $this->input->cookie('cml_remember');
             if($remember_cookie && $row = $this->master->getRow('members', array('mem_remember' => $remember_cookie)))
             {
                 $this->session->set_userdata('mem_id', $row->mem_id);
-                $this->session->set_userdata('mem_type', $row->mem_type);
 
             }else{
                 $this->session->set_userdata('redirect_url', currentURL());
@@ -28,16 +27,10 @@ class MY_Controller extends CI_Controller {
             }
 
         }
-        # CHECK USER TYPE IF EXIST
-        $this->type_logged_checked($type_arr);
 
         # IF USER EMAIL VERIFIED
         if($is_verified)
             $this->is_verified();
-
-        # IF ROUTE ACCESSIBLE
-        if(!empty($route_check))
-            $this->if_route_accessible($route_check);
     }
     
     function send_proof_mail($proof_id)
@@ -84,16 +77,8 @@ class MY_Controller extends CI_Controller {
     {
         if(empty($this->data['mem_data']->mem_verified) || $this->data['mem_data']->mem_verified == 0) 
         {
-            redirect($this->session->mem_type.'/dashboard', 'refresh');
+            redirect('user/dashboard', 'refresh');
             exit;
-        }
-    }
-
-    function if_route_accessible($route)
-    {
-        if($this->session->mem_type != $route)
-        {
-            redirect($this->session->mem_type.'/dashboard', 'refresh');
         }
     }
 
@@ -107,9 +92,9 @@ class MY_Controller extends CI_Controller {
             redirect($this->session->mem_type.'/dashboard', 'refresh');
             exit;
         }
-        elseif (($this->session->mem_id > 0) && $this->session->has_userdata('mem_type'))
+        elseif (($this->session->mem_id > 0))
         {
-            redirect($this->session->mem_type.'/dashboard', 'refresh');
+            redirect('user/dashboard', 'refresh');
             exit;
         }
     }

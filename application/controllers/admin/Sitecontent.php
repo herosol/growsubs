@@ -199,6 +199,70 @@ class Sitecontent extends Admin_Controller
         $this->load->view(ADMIN . '/includes/siteMaster', $this->data);
     }
 
+    function forgot_password() {
+        $this->data['enable_editor'] = TRUE;
+        $this->data['pageView'] = ADMIN . '/site_forgot_password';
+        if ($vals = $this->input->post()) {
+            $content_row = $this->master->getRow($this->table_name, array('ckey' => 'forgot_password'));
+            $content_row = unserialize($content_row->code);
+            if(!is_array($content_row))
+                $content_row = array();
+            
+            for($i = 1; $i <= 1; $i++) {
+                if (isset($_FILES["image".$i]["name"]) && $_FILES["image".$i]["name"] != "") {
+
+                    $image = upload_file(UPLOAD_PATH.'images/', 'image'.$i);
+                    if(!empty($image['file_name'])){
+                        if(isset($content_row['image'.$i]))
+                            $this->remove_file(UPLOAD_PATH."images/".$content_row['image'.$i]);
+                        $vals['image'.$i] = $image['file_name'];
+                    }
+                }
+            }
+            $data = serialize(array_merge($content_row, $vals));
+            $this->master->save($this->table_name, array('code' => $data), 'ckey', 'forgot_password');
+            setMsg('success', 'Settings updated successfully !');
+            redirect(ADMIN . "/sitecontent/forgot_password");
+            exit;
+        }
+
+        $this->data['content'] = $this->master->getRow($this->table_name, array('ckey' => 'forgot_password'));
+        $this->data['row'] = unserialize($this->data['content']->code);
+        $this->load->view(ADMIN . '/includes/siteMaster', $this->data);
+    }
+
+    function reset_password() {
+        $this->data['enable_editor'] = TRUE;
+        $this->data['pageView'] = ADMIN . '/site_reset_password';
+        if ($vals = $this->input->post()) {
+            $content_row = $this->master->getRow($this->table_name, array('ckey' => 'reset_password'));
+            $content_row = unserialize($content_row->code);
+            if(!is_array($content_row))
+                $content_row = array();
+            
+            for($i = 1; $i <= 1; $i++) {
+                if (isset($_FILES["image".$i]["name"]) && $_FILES["image".$i]["name"] != "") {
+
+                    $image = upload_file(UPLOAD_PATH.'images/', 'image'.$i);
+                    if(!empty($image['file_name'])){
+                        if(isset($content_row['image'.$i]))
+                            $this->remove_file(UPLOAD_PATH."images/".$content_row['image'.$i]);
+                        $vals['image'.$i] = $image['file_name'];
+                    }
+                }
+            }
+            $data = serialize(array_merge($content_row, $vals));
+            $this->master->save($this->table_name, array('code' => $data), 'ckey', 'reset_password');
+            setMsg('success', 'Settings updated successfully !');
+            redirect(ADMIN . "/sitecontent/reset_password");
+            exit;
+        }
+
+        $this->data['content'] = $this->master->getRow($this->table_name, array('ckey' => 'reset_password'));
+        $this->data['row'] = unserialize($this->data['content']->code);
+        $this->load->view(ADMIN . '/includes/siteMaster', $this->data);
+    }
+
 
     function privacy_policy() {
         $this->data['enable_editor'] = TRUE;

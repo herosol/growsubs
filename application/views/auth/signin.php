@@ -2,53 +2,61 @@
 <html>
 
 <head>
-    <title>Grow Subs - Login</title>
-    <?php require_once('includes/site-master.php'); ?>
+    <title><?= $page_title ?> — <?= $site_settings->site_name ?></title>    
+    <?php $this->load->view('includes/site-master'); ?>
 </head>
 
 <body id="home-page" class="form-page">
-<?php require_once('includes/header.php'); ?>
+<?php $this->load->view('includes/header'); ?>
 <main index>
     <section class="form-blk">
         <div class="flex">
             <div class="colL">
                 <div class="image">
-                    <img src="images/login-form.png" alt="">
+                    <img src="<?=get_site_image_src("images/", $content['image1'])?>" alt="">
                 </div>
             </div>
             <div class="colR">
                 <div class="inner">
-                    <h2>Login With GROWSUBS</h2>
-                    <form action="" method="post">
+                    <h2><?= $content['main_heading'] ?></h2>
+                    <form action="" method="POST" id="frmSignin" class="frmAjax" autocomplete="off">
+                        <div class="alertMsg"></div>
                         <div class="row formRow">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xx-12">
                             <div class="txtGrp">
                                 <label>Enter Your Email</label>
-                                <input type="text" name="" value="" class="txtBox"></div>
+                                <input type="text" name="email" value="" class="txtBox"></div>
                             </div>
                                     
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xx-12">
                             <div class="txtGrp">
                                 <label>Password</label>
-                                <input type="text" name="" value="" class="txtBox"></div>
+                                <input type="text" name="password" value="" class="txtBox"></div>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="txtGrp">
                                     <div class="lblBtn">
-                                        <input type="checkbox" name="" id="remember" checked="">
+                                        <input type="checkbox" name="remember" id="remember" checked="">
                                         <label for="remember">Remember me</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="txtGrp">
+                                    <div class="lblBtn">
+                                        <a href="<?= base_url('forgot-password') ?>" id="pass">Forgot Password?</a>
                                     </div>
                                 </div>
                             </div>
                                     
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xx-12">
-                                <button type="submit" class="webBtn">Login</button>
+                                <button type="submit" class="webBtn"><i class="spinner hidden"></i>Signin</button>
                             </div>
                         </div>
                         <div class="oRLine"><span>OR</span></div>
                             <div class="haveAccount text-center">
                                 <span class="margin-right-15">Don’t have an account ?</span>
-                                <a href="signup.php" id="member">Signup</a>
+                                <a href="<?=base_url('signup')?>" id="member">Signup</a>
                             </div>
                     </form>
                 </div>
@@ -56,7 +64,7 @@
         </div>
     </section>
 </main>
-<?php require_once('includes/footer.php'); ?>
+<?php $this->load->view('includes/footer'); ?>
 </body>
 
 </html>

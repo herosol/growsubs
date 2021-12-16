@@ -65,26 +65,6 @@
                     <span class="title">Manage Contacts</span><span class="badge badge-success"><?=new_messages()?></span>
                 </a>
             </li>
-            <li class=" <?= ($this->uri->segment(2) == 'services' || $this->uri->segment(2) == 'sub_services') ? ' opened  active' : '' ?>">
-                <a href="javascript:void(0)">
-                    <i class="fa fa-pagelines  "></i>
-                    <span class="title">Manage Services</span>
-                </a>
-                <ul>
-                    <li class=" <?= ($this->uri->segment(3) == 'services') ? ' active' : '' ?>">
-                        <a href="<?= site_url(ADMIN.'/services') ?>">
-                        <i class="fa fa-file"></i>
-                            <span class="title">Services</span>
-                        </a>
-                    </li>
-                    <li class=" <?= ($this->uri->segment(3) == 'sub_services') ? ' active' : '' ?>">
-                        <a href="<?= site_url(ADMIN.'/sub_services') ?>">
-                            <i class="entypo-doc-text  "></i>
-                            <span class="title">Sub Services</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
             <li class=" <?= ($this->uri->segment(2) == 'sitecontent' || $this->uri->segment(2) == 'preferences') ? ' opened  active' : '' ?>">
                 <a href="javascript:void(0)">
                     <i class="fa fa-pagelines  "></i>
@@ -130,13 +110,25 @@
                     <li class=" <?= ($this->uri->segment(3) == 'signin') ? ' active' : '' ?>">
                         <a href="<?= site_url(ADMIN.'/sitecontent/signin') ?>">
                             <i class="entypo-doc-text  "></i>
-                            <span class="title">Login</span>
+                            <span class="title">Signin</span>
                         </a>
                     </li>
                     <li class=" <?= ($this->uri->segment(3) == 'signup') ? ' active' : '' ?>">
                         <a href="<?= site_url(ADMIN.'/sitecontent/signup') ?>">
                             <i class="entypo-doc-text  "></i>
                             <span class="title">Signup</span>
+                        </a>
+                    </li>
+                    <li class=" <?= ($this->uri->segment(3) == 'forgot_password') ? ' active' : '' ?>">
+                        <a href="<?= site_url(ADMIN.'/sitecontent/forgot_password') ?>">
+                            <i class="entypo-doc-text  "></i>
+                            <span class="title">Forgot Password</span>
+                        </a>
+                    </li>
+                    <li class=" <?= ($this->uri->segment(3) == 'reset_password') ? ' active' : '' ?>">
+                        <a href="<?= site_url(ADMIN.'/sitecontent/reset_password') ?>">
+                            <i class="entypo-doc-text  "></i>
+                            <span class="title">Reset Password</span>
                         </a>
                     </li>
                     <li class=" <?= ($this->uri->segment(3) == 'terms_conditions') ? ' active' : '' ?>">
@@ -165,12 +157,6 @@
                     <span class="title">Manage Testimonials</span>
                 </a>
             </li>
-            <li class="opened<?= $this->uri->segment('2') == 'partners' ? ' active' : '' ?>">
-                <a href="<?= site_url(ADMIN.'/partners') ?>">
-                    <i class="fa fa-comments"></i>
-                    <span class="title">Manage Partners</span>
-                </a>
-            </li>
             <li class="opened <?= ($this->uri->segment(2) == 'faq') ? 'active' : '' ?>">
                 <a href="<?= site_url(ADMIN.'/faq') ?>">
                     <i class="fa fa-th-list"></i>
@@ -183,35 +169,16 @@
                     <span class="title">Newsletter</span><span class="badge badge-danger"><?=new_subscribers()?></span>
                 </a>
             </li>
-            <li class="opened <?= ($this->uri->segment(2) == 'promos') ? 'active' : '' ?>">
-                <a href="<?= site_url(ADMIN.'/promos') ?>">
+            <li class="opened <?= ($this->uri->segment(2) == 'packages') ? 'active' : '' ?>">
+                <a href="<?= site_url(ADMIN.'/packages') ?>">
                     <i class="fa fa-file"></i>
-                    <span class="title">Manage Promotions</span>
+                    <span class="title">Manage Packages</span>
                 </a>
             </li>
-            <li class="opened <?= ($this->uri->segment(2) == 'email_logs') ? 'active' : '' ?>">
-                <a href="<?= site_url(ADMIN.'/email_logs') ?>">
-                    <i class="fa fa-file"></i>
-                    <span class="title">See Email Logs</span>
-                </a>
-            </li>
-            <li class="opened <?= ($this->uri->segment(2) == 'invoices') ? 'active' : '' ?>">
-                <a href="<?= site_url(ADMIN.'/Blogs') ?>">
-                    <i class="fa fa-file"></i>
-                    <span class="title">Manage Blogs</span>
-                </a>
-            </li>
-
             <li class="opened <?= ($this->uri->segment('2') == 'meta-info') ? 'active' : '' ?>">
                 <a href="<?= site_url(ADMIN.'/meta-info') ?>">
                     <i class="fa fa-bars" aria-hidden="true"></i>
                     <span class="title">Site Meta</span>
-                </a>
-            </li>
-            <li class="opened <?= ($this->uri->segment(2) == 'texts') ? 'active' : '' ?>">
-                <a href="<?= site_url(ADMIN) ?>/texts">
-                    <i class="fa fa-cog"></i>
-                    <span class="title">Manage Notifications</span>
                 </a>
             </li>
             <li class="opened <?= ($this->uri->segment(2) == 'settings' && $this->uri->segment(3) == '') ? 'active' : '' ?>">

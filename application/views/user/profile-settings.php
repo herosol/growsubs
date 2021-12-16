@@ -3,11 +3,11 @@
 
 <head>
     <title>Grow Subs - Profile Settings</title>
-    <?php require_once('../includes/site-master.php'); ?>
+    <?php $this->load->view('includes/site-master'); ?>
 </head>
 
 <body id="home-page" class="dashboard-side dash-body">
-<?php require_once('../includes/header-logged.php'); ?>
+<?php $this->load->view('includes/header-logged'); ?>
 <main index>
 <section id="dash">
 <div id="profileSet">
@@ -117,7 +117,7 @@
                          <div class="row formRow">
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-xx-4">
                                 <div class="proDp ico">
-                                    <img src="../images/team/3.png" alt="">
+                                    <img src="<?=asset('images/team/3.png')?>" alt="">
                                 </div>
                                 <div class="text-center"><button type="button" class="webBtn smBtn uploadImg" id="uploadDp" data-image-src="dp"><i class="fi-user"></i> Change Photo</button></div>
                                 <div class="noHats text-center">(Please upload your photo)</div>
@@ -270,7 +270,7 @@
 	 </div>
 </section>
 </main>
-<?php require_once('../includes/commonjs.php'); ?>
+<?php $this->load->view('includes/commonjs'); ?>
 </body>
 
 </html>
