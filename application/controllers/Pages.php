@@ -162,38 +162,38 @@ class Pages extends MY_Controller
         }
     }
 
-    function paypal($order_id)
-    {
+    function paypal($encoded_id){
         $this->load->library('Paypal_lib');
-        $order_id = intval(doDecode($order_id));
-        // echo $order_id; die;
-        $row = $this->order_model->get_row($order_id);
-        if ($row) {
+        $id = intval(doDecode($encoded_id));
+        $row = $this->master->getRow('orders',array('id'=>$id));
+        if($row){
             $this->data['post'] = array(
                 "item_name" => "Paypal Payment",
-                "currency" => "GBP",
-                "amount" => order_total_price($order_id),
-                "custom" => $order_id
+                "currency" => "USD",
+                "amount" => $row->total_price+$row->shipping_fee,
+                "custom" => $id
             );
-            $notify_url = site_url('order-notify');
-            $this->data['setting'] = array(
-                "website_name" => "" . $this->data['site_settings']->site_name . "",
-                "url" => "" . base_url() . "",
-                "notify_url" => "" . $notify_url . "",
-                "return_url" => "" . base_url() . "success/" . doEncode($order_id),
-                "cancel_url" => "" . base_url() . "cancel",
+            // pr($this->data['post']);
+            $notify_url = site_url('order-notify') ;
+            $this->data['setting']=array(
+                "website_name" => "".$this->data['settings']->site_name."",
+                "url" => "". base_url()."",
+                "notify_url" =>"".$notify_url."",
+                "return_url" => "".base_url()."success/".$encoded_id,
+                "cancel_url" => "".base_url()."cancel/".$encoded_id,
             );
-
-            if ($this->data['site_settings']->site_paypal_environment) :
+            
+            if($this->data['settings']->site_paypal_environment):
                 $this->data['setting']["sandbox"] = true;
-                $this->data['setting']["sandbox_paypal"] = $this->data['site_settings']->site_sandbox_paypal;
-            else :
-                $this->data['setting']["live_paypal"] = $this->data['site_settings']->site_live_paypal;
-            endif;
-            // pr($this->data);
+                $this->data['setting']["sandbox_paypal"] = $this->data['settings']->site_sandbox_paypal;
+            else:
+                $this->data['setting']["live_paypal"] = $this->data['settings']->site_live_paypal;
+            endif;  
+		// die('here');
             $this->load->view("includes/processing", $this->data);
-        } else
-            exit('Access Denied!');
+        }
+        else
+        exit('Access Denied!');
     }
 
     function error()

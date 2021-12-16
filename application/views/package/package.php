@@ -62,7 +62,7 @@
                                     <h4>Service is delivered to 1 video maximum.</h4>
                                 </div>
                                 <div class="bTn">
-                                    <a href="order-form.php" class="webBtn">Get Started</a>
+                                    <a href="<?=base_url('order/'.doEncode($package->id))?>" class="webBtn">Get Started</a>
                                 </div>
                             </div>
                         </div>

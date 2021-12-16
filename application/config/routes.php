@@ -23,9 +23,20 @@ $route['resend-email']     = 'auth/auth/resend_email';
 $route['verification/(:any)'] = 'auth/auth/verification/$1';
 $route['newsletter']       = 'auth/auth/newsletter';
 $route['signout']          = 'auth/auth/signout';
+# ORDER PAGES
+$route['order/(:any)']     = 'orders/index/$1';
+$route['pay-now']          = 'orders/pay_now';
 # USER PAGES
 $route['user/dashboard']        = 'user/dashboard/dashboard';
 $route['user/profile-settings'] = 'user/dashboard/profile_settings';
+# PAYPAL
+$route['pay-now/(:num)'] = 'paypal/pay_now/$1';
+$route['success/(:any)'] = 'paypal/success/$1';
+$route['cancel/(:any)'] = 'paypal/cancel/$1';
+$route['order-notify'] = 'paypal/order_notify';
+// $route['booking-notify'] = 'paypal/booking_notify';
+$route['paypal/(:any)'] =  'Pages/paypal/$1';
+
 # ADMIN
 $route['admin/login']     = 'admin/index/login';
 $route['admin/logout']    = 'admin/index/logout';

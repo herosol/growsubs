@@ -6,6 +6,7 @@
 <script type="text/javascript" src="<?= asset('js/additional-methods.js') ?>"></script>
 <script type="text/javascript" src="<?= asset('js/custom.js') ?>"></script>
 <script type="text/javascript" src="<?= asset('js/custom-validation.js') ?>"></script>
+<script type="text/javascript" src="<?= asset('js/toastr.js') ?>"></script>
 <script type="text/javascript">
     var $grid;
     $(window).on('load', function() {
