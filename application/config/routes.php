@@ -26,9 +26,15 @@ $route['signout']          = 'auth/auth/signout';
 # ORDER PAGES
 $route['order/(:any)']     = 'orders/index/$1';
 $route['pay-now']          = 'orders/pay_now';
+$route['order-success/(:any)'] = 'pages/success/$1'; 
 # USER PAGES
 $route['user/dashboard']        = 'user/dashboard/dashboard';
 $route['user/profile-settings'] = 'user/dashboard/profile_settings';
+$route['user/orders']           = 'user/dashboard/orders';
+$route['user/orders/(:any)']    = 'user/dashboard/orders/$1';
+$route['user/transactions']        = 'user/dashboard/transactions';
+$route['user/transactions/(:any)'] = 'user/dashboard/transactions/$1';
+$route['user/order-detail/(:any)'] = 'user/dashboard/order_detail/$1';
 # PAYPAL
 $route['pay-now/(:num)'] = 'paypal/pay_now/$1';
 $route['success/(:any)'] = 'paypal/success/$1';

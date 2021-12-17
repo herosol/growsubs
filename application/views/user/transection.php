@@ -3,17 +3,17 @@
 
 <head>
     <title>Grow Subs - Transections</title>
-    <?php require_once('../includes/site-master.php'); ?>
+    <?php $this->load->view('includes/site-master'); ?>
 </head>
 
 <body id="home-page" class="dashboard-side dash-body">
-<?php require_once('../includes/header-logged.php'); ?>
+<?php $this->load->view('includes/header-logged'); ?>
 <main index>
 <section id="dash">
 	 <div id="dashboard" class="order-form">
 	 	<div class="contain">
             <div class="head">
-                <h1 class="secHeading">Transection History</h1>
+                <h1 class="secHeading">Transection History (<?=count($totalRec)?>)</h1>
             </div>
             <div class="blk">
                     <div class="tbl_blk">
@@ -28,75 +28,35 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            <?php if(count($transactions) == 0): ?>
                                 <tr>
-                                    <td><a href="order-detail.php">000011</a></td>
-                                    <td>360 degrees</td>
-                                    <td class="price">$10.00</td>
-                                    <td>Fri, 12 Nov 2021</td>
-                                    <td><span class="badge green">Completed</span></td>
+                                    <td>No record found.</td>
+                                    <td></td>
+                                    <td class="price"></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
-                                <tr>
-                                    <td><a href="order-detail.php">000010</a></td>
-                                    <td>Snob</td>
-                                    <td class="price">$30.00</td>
-                                    <td>Tue, 09 Nov 2021</td>
-                                    <td><span class="badge green">Completed</span></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="order-detail.php">000009</a></td>
-                                    <td>Wonderful</td>
-                                    <td class="price">$60.00</td>
-                                    <td>Wed, 03 Nov 2021</td>
-                                    <td><span class="badge green">Completed</span></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="order-detail.php">000008</a></td>
-                                    <td>Studio</td>
-                                    <td class="price">$10.00</td>
-                                    <td>Wed, 27 Oct 2021</td>
-                                    <td><span class="badge green">Completed</span></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="order-detail.php">000007</a></td>
-                                    <td>Tips & Tricks</td>
-                                    <td class="price">$65.00</td>
-                                    <td>Thu, 30 Sep 2021</td>
-                                    <td><span class="badge green">Completed</span></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="order-detail.php">000003</a></td>
-                                    <td>Tutorials</td>
-                                    <td class="price">$50.00</td>
-                                    <td>Thu, 23 Sep 2021</td>
-                                    <td><span class="badge green">Completed</span></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="order-detail.php">000002</a></td>
-                                    <td>Samira Jones</td>
-                                    <td class="price">$32.00</td>
-                                    <td>Thu, 23 Sep 2021</td>
-                                    <td><span class="badge green">Completed</span></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="order-detail.php">000001</a></td>
-                                    <td>Town</td>
-                                    <td class="price">$10.00</td>
-                                    <td>Thu, 23 Sep 2021</td>
-                                    <td><span class="badge green">Completed</span></td>
-                                </tr>
+                            <?php
+                            else:
+                                foreach($transactions as $index => $transac): $transac = (object)$transac; ?>
+                                    <tr>
+                                        <td><a href="<?=base_url('user/order-detail/'.doEncode($transac->id))?>"><?=num_size($transac->id)?></a></td>
+                                        <td><?=$transac->channel_name?></td>
+                                        <td class="price">$<?=$transac->total_price?></td>
+                                        <td><?=format_date_log_format($transac->order_timestamp, 'D, d M Y', false)?></td>
+                                        <td><span class="badge green">Completed</span></td>
+                                    </tr>
+                            <?php
+                                endforeach;
+                            endif;
+                            ?>
                             </tbody>
                         </table>
                     </div>
             </div>
             <div class="text-center page_nation">
                 <ul class="pagination">
-                    <li><a href="?">«</a></li>
-                    <li><a href="?">1</a></li>
-                    <li><a href="?" class="active">2</a></li>
-                    <li><a href="?">3</a></li>
-                    <li><a href="?">4</a></li>
-                    <li><a href="?">5</a></li>
-                    <li><a href="?">»</a></li>
+                    <?php echo $this->pagination->create_links(); ?>
                 </ul>
             </div>
         </div>
@@ -104,7 +64,7 @@
 	 </div>
 </section>
 </main>
-<?php require_once('../includes/commonjs.php'); ?>
+<?php $this->load->view('includes/commonjs'); ?>
 </body>
 
 </html>

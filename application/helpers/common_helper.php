@@ -329,22 +329,6 @@ function order_status_dropdown($value, $order_id)
     return $html;
 }
 
-function get_order_status($status)
-{
-    if ($status == 'New') {
-        return 'blue';
-    } elseif ($status == 'In Progress') {
-        return 'yellow';
-    } elseif ($status == 'Delivered') {
-        return 'green';
-    } elseif ($status == 'Completed') {
-        return 'green';
-    } elseif ($status == 'Cleared') {
-        return 'green';
-    } elseif ($status == 'Cancelled') {
-        return 'red';
-    }
-}
 
 function get_delivery_proof_status($status)
 {
@@ -519,6 +503,16 @@ function showVal($val)
         return $val;
 }
 
+function get_order_status($status)
+{
+    if ($status == 0) {
+        return '<span class="badge blue">Pending</span>';
+    } elseif($status == 2) {
+        return '<span class="badge red">Cancelled</span>';
+    } else {
+        return '<span class="badge green">Complete</span>';
+    }
+}
 
 function get_order_status_name($status)
 {
@@ -747,9 +741,26 @@ function format_amount($amount, $size = 2)
     return $amount >= 0 ? "$" . number_format($amount, $size) : "$ (" . number_format(abs($amount), $size) . ')';
 }
 
+function num_size($num,$size=6){
+    return sprintf('GS'.'%0'.$size.'d',$num);
+
+}
+
 function num($val, $size = 2)
 {
     return number_format(floatval($val), $size, '.', '');
+}
+
+function calculatePer($total, $portion)
+{
+    if($portion == null)
+    {
+        return 0;
+    }
+    else
+    {
+        return $percentage = ($portion / $total) * 100; // 20
+    }
 }
 
 function randCode($length = 8, $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890')
@@ -1043,7 +1054,7 @@ function format_date($d, $format = '', $default_show = 'TBD')
     return date($format, $d);
 }
 
-function date_picker_format_date($day, $format = '', $check = true, $default_show = 'TBD')
+function format_date_log_format($day, $format = '', $check = true, $default_show = 'TBD')
 {
     if ($check) {
         $dayIndex = explode('-', $day);

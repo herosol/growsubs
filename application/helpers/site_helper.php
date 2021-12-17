@@ -312,10 +312,6 @@ function total_sitter_deliveries($sitter_id)
     return intval($query->row()->total);
 }
 
-function num_size($num, $size = 6)
-{
-    return sprintf('%0'.$size.'d', $num);
-}
 
 function calc_booking_total($row, $for, $only_total = FALSE)
 {

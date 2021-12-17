@@ -17,7 +17,7 @@
                 </li>
                 
                
-                <li class="<?php if ($page == "orders") {
+                <li class="<?php if ($page == "orders" || $page == "order-detail") {
                                 echo 'active';
                             } ?>">
                     <a href="<?=base_url('user/orders')?>">My Orders</a>
@@ -41,6 +41,7 @@
                 <div class="ico"><img src="<?=asset('images/team/4.png')?>" alt=""></div>
             </div>
             <ul class="proDrop dropCnt dropLst">
+                <li><a href="<?=base_url()?>"><i class="fi-home"></i><span>Home</span></a></li>
                 <li><a href="<?=base_url('user/profile-settings')?>"><i class="fi-user"></i><span>Profile Settings</span></a></li>
                 <li><a href="<?=base_url('signout')?>"><i class="fi-power-switch"></i><span>Signout</span></a></li>
             </ul>

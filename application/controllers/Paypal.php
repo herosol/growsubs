@@ -9,7 +9,7 @@ class Paypal extends MY_Controller {
     }
     
     function success($encoded_id){
-        redirect(base_url('order-success'));
+        redirect(base_url('order-success/'.$encoded_id));
         exit;
     }
     
@@ -65,7 +65,7 @@ class Paypal extends MY_Controller {
             $txn_id = $resArray['txn_id'];
             $row = $this->master->getRow('orders', array('id'=>$custom));
             if ($row) {
-                $this->master->save('orders', ['status'=>1, 'txt_id'=> $txn_id], 'id', $custom);
+                $this->master->save('orders', ['payment_status'=>1, 'txt_id'=> $txn_id], 'id', $custom);
             }
         }
         elseif (strcmp ($res, "INVALID") == 0)

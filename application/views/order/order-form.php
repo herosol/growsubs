@@ -216,7 +216,6 @@
     </section>
 </main>
 <?php $this->load->view('includes/footer'); ?>
-<script src="https://js.stripe.com/v2/"></script>
     <script  type="text/javascript">
     $(document).on('submit','#payment-form',function(e){ 
         e.preventDefault();
@@ -241,20 +240,20 @@
                         $("html, body").animate({
                             scrollTop: 100
                         }, "slow");
-                        frmMsg.html(rs.msg).slideDown(500);
+                        // frmMsg.html(rs.msg).slideDown(500); 
                         if (rs.status == 1) {
-                            toastr.success(rs.msg,"Success");
+                            toastr.success(rs.msg, "Success");
                             setTimeout(function() {
                                 frmIcon.addClass("hidden");
                                 form$[0].reset();
                                 window.location.href = rs.redirect_url;
                             }, 3000);
                         } else {
-                            toastr.error(rs.msg,"Error");
+                            toastr.error(rs.msg, "Error");
                             setTimeout(function() {
                                 frmIcon.addClass("hidden");
                                 sbtn.attr("disabled", false);
-                            }, 3000);
+                            }, 1000);
                         }
                     },
                     error: function(rs) {
@@ -282,58 +281,6 @@
         return false; 
         }
     })
-    Stripe.setPublishableKey('<?= API_PUBLIC_KEY; ?>');
-    function stripeResponseHandler(status, response) {
-            let form$ = $("#payment-form");
-            let sbtn = form$.find("button[type='submit']");
-            let frmIcon = form$.find("button[type='submit'] i.spinner");
-        if (response.error) {
-            console.log(response.error.message)
-            toastr.error('<strong>Error:</strong> ' + response.error.message + '',"Error");
-            $('button[type="submit"]').prop('disabled',false);
-            $('.spin').addClass('hidden');
-        } 
-        else {
-            let nonce = response['id'];
-            let frmData = new FormData(form$[0]);
-            let frmMsg = form$.find("div.alertMsg:first");
-            frmData.append('nonce', nonce);
-            
-            object.append("<input type='hidden' name='nonce' value='" + nonce + "' />");
-            console.log(nonce);
-            $('.card_payment').prop('disabled',true);
-            $('.card_payment').parent().hide();
-            $.ajax({
-                url: form$.attr('action'),
-                data:object.serialize(),
-                dataType:'JSON',
-                method:'POST',
-                error:function(er){
-                    toastr.error('<div>Please try again or refresh your page.Error occur due to sever response!</div>',"Error");
-                },
-                success:function(rs){
-                    if(rs.scroll_top)
-                        $("html, body").animate({ scrollTop: 0 }, "slow");
-                    if (rs.status == 1) {
-                        toastr.success(rs.msg,"Success");
-                        setTimeout(function () {
-                        if(rs.hide_msg)
-                            $('.alertMsg').slideUp(500);
-                        if(rs.redirect_url)
-                            window.location.href = rs.redirect_url;   
-                        },3000)
-                    }
-                    else{
-                        toastr.error(rs.msg,"Error");
-                    }
-                },
-                complete:function(){
-                    $('button[type="submit"]').prop('disabled',false);
-                    $('.spin').addClass('hidden');
-                }
-            })
-        }
-    }
 </script>
 </body>
 

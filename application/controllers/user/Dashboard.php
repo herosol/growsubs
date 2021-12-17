@@ -7,19 +7,21 @@ class Dashboard extends MY_Controller
     {
         parent::__construct();
         $this->load->model('member_model');
-        // $this->load->model('order_model');
-        // $this->load->model('OrderD_model', 'orderd_model');
+        $this->load->model('order_model');
+
+        $this->perPage = 8;
     }
 
     public function dashboard()
     {
         $this->isMemLogged(false);
+        $this->data['today_orders'] = $this->order_model->user_today_orders();
         $this->load->view('user/index', $this->data);
     }
 
     public function profile_settings()
     {
-        // $this->isMemLogged($this->session->mem_type, false, $this->uri->segment(1));
+        $this->isMemLogged(false);
         $mem_id = $this->session->mem_id;
         if ($this->input->post()) {
             $res = array();
@@ -79,67 +81,84 @@ class Dashboard extends MY_Controller
         $this->load->view('user/profile-settings', $this->data);
     }
 
-    public function notifications()
-    {
-        $this->isMemLogged($this->session->mem_type, true, $this->uri->segment(1));
-        $clear = $this->member_model->clear_notifs();
-        $this->data['notifications'] = $this->master->get_data_rows('notifications', ['mem_id'=> $this->session->mem_id], 'DESC');
-        $this->load->view('buyer/notifications', $this->data);
-    }
-
     public function orders()
     {
-        $this->isMemLogged($this->session->mem_type, true, $this->uri->segment(1));
+        $this->isMemLogged(false);
         // ALL ORDERS
-        $orders = $this->order_model->get_buyer_orders();
-        $services = [];
-        foreach ($orders as $index => $order) :
-            $order_detail = $this->master->getRows('order_detail', array('order_id' => $order->order_id));
-            $orders[$index]->services = $order_detail;
+        $data = $conditions = array(); 
+        $uriSegment = 3;
+         
+        // Get record count 
+        $conditions['returnType'] = 'count';
+        $this->data['totalRec'] = $totalRec = $this->order_model->get_user_orders();
+         
+        // Pagination configuration 
+        $config['base_url']    = base_url().'user/orders'; 
+        $config['uri_segment'] = $uriSegment; 
+        $config['total_rows']  = count($totalRec); 
+        $config['per_page']    = $this->perPage; 
+         
+        // Initialize pagination library 
+        $this->load->library('pagination');
+        $this->pagination->initialize($config); 
+         
+        // Define offset 
+        $page = $this->uri->segment($uriSegment); 
+        $offset = ! $page ? 0 : $page; 
+         
+        // Get records 
+        $conditions = array( 
+            'start' => $offset, 
+            'limit' => $this->perPage 
+        ); 
+        $this->data['records'] = $this->order_model->get_user_order_pagination($conditions);
+        foreach($this->data['records'] as $index => $order):
+            $order['package'] = $this->master->get_data_row('packages', ['id'=> $order['package_id']]);
+            $this->data['orders'][] = $order;
         endforeach;
-        $this->data['orders'] = $orders;
-
-        // DELIVERED ORDERS
-        $delivered_orders = $this->order_model->get_buyer_orders(['order_status'=> 'Delivered']);
-        $services = [];
-        foreach ($delivered_orders as $index => $order) :
-            $order_detail = $this->master->getRows('order_detail', array('order_id' => $order->order_id));
-            $delivered_orders[$index]->services = $order_detail;
-        endforeach;
-        $this->data['delivered_orders'] = $delivered_orders;
-
-        // CANCELED ORDERS
-        $canceled_orders = $this->order_model->get_buyer_orders(['order_status'=> 'Cancelled']);
-        $services = [];
-        foreach ($canceled_orders as $index => $order) :
-            $order_detail = $this->master->getRows('order_detail', array('order_id' => $order->order_id));
-            $canceled_orders[$index]->services = $order_detail;
-        endforeach;
-        $this->data['canceled_orders'] = $canceled_orders;
-
-        // pr($this->data);
-        $this->load->view('buyer/orders', $this->data);
+        $this->load->view('user/order', $this->data);
     }
 
     public function order_detail($o_id)
     {
-        $this->isMemLogged($this->session->mem_type, true, $this->uri->segment(1));
+        $this->isMemLogged(false);
         $o_id = intval(doDecode($o_id));
-        $this->master->update('order_logs', ['status' => 'clean'], ['mem_id' => $this->session->mem_id, 'mem_type' => $this->session->mem_type, 'order_id' => $o_id]);
-        $this->data['order'] = $this->master->getRow('orders', array('order_id' => $o_id));
-        $this->data['order_detail'] = $this->master->getRows('order_detail', array('order_id' => $o_id, 'service_type' => 'basic'));
-        $this->data['amended'] = $this->orderd_model->get_rows(['order_id' => $o_id, 'service_type' => 'amended']);
-        $this->data['delivery_proof'] = $this->master->getRow('order_delivery_proof', array('order_id' => $o_id, 'status' => 'pending'));
-        $this->load->view('buyer/order-detail', $this->data);
+        $this->data['order'] = (array)$this->master->get_data_row('orders', array('id' => $o_id));
+        $this->load->view('user/order-detail', $this->data);
     }
 
     public function transactions()
     {
-        $this->isMemLogged($this->session->mem_type, true, $this->uri->segment(1));
-        $transactions_details = $this->order_model->buyer_transactions();
-        $this->data['transactions'] = $transactions_details['transactions'];
-        $this->data['used_balance'] = $transactions_details['total_used_balance'];
-        $this->load->view('buyer/transactions', $this->data);
+        $this->isMemLogged(false);
+        // ALL ORDERS
+        $data = $conditions = array(); 
+        $uriSegment = 3;
+        
+        // Get record count 
+        $conditions['returnType'] = 'count';
+        $this->data['totalRec'] = $totalRec = $this->order_model->get_user_transactions();
+        
+        // Pagination configuration 
+        $config['base_url']    = base_url().'user/transactions'; 
+        $config['uri_segment'] = $uriSegment; 
+        $config['total_rows']  = count($totalRec); 
+        $config['per_page']    = $this->perPage; 
+        
+        // Initialize pagination library 
+        $this->load->library('pagination');
+        $this->pagination->initialize($config); 
+        
+        // Define offset 
+        $page = $this->uri->segment($uriSegment); 
+        $offset = ! $page ? 0 : $page; 
+        
+        // Get records 
+        $conditions = array( 
+            'start' => $offset, 
+            'limit' => $this->perPage 
+        ); 
+        $this->data['transactions'] = $this->order_model->get_user_transaction_pagination($conditions);
+        $this->load->view('user/transection', $this->data);
     }
 
     public function save_address()

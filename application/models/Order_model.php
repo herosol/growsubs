@@ -11,6 +11,114 @@ class Order_model extends CRUD_Model
 
     /*** start admin orders ***/
 
+    function get_user_orders()
+    {
+
+        $this->db->select("*");
+        $this->db->from($this->table_name);
+        $this->db->where(['payment_status'=> 1, 'mem_id'=> $this->session->mem_id]);
+        $this->db->order_by('order_status', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    function get_user_transactions()
+    {
+
+        $this->db->select("*");
+        $this->db->from($this->table_name);
+        $this->db->where(['payment_status'=> 1, 'mem_id'=> $this->session->mem_id]);
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    function user_today_orders()
+    {
+
+        $this->db->select("*");
+        $this->db->from($this->table_name);
+        $this->db->where(['payment_status'=> 1, 'mem_id'=> $this->session->mem_id, 'order_date'=> date('Y-m-d')]);
+        $this->db->order_by('order_status', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    
+
+    function get_user_order_pagination($params = array()){ 
+        $this->db->select('*'); 
+        $this->db->from($this->table_name); 
+        $this->db->where(['payment_status'=> 1, 'mem_id'=> $this->session->mem_id]); 
+
+        if(array_key_exists("where", $params)){ 
+            foreach($params['where'] as $key => $val){ 
+                $this->db->where($key, $val); 
+            } 
+        } 
+         
+        if(array_key_exists("returnType", $params) && $params['returnType'] == 'count'){ 
+            $result = $this->db->count_all_results(); 
+        }
+        else
+        { 
+            if(array_key_exists("id", $params) || (array_key_exists("returnType", $params) && $params['returnType'] == 'single')){ 
+                if(!empty($params['id'])){ 
+                    $this->db->where('id', $params['id']); 
+                } 
+                $query = $this->db->get(); 
+                $result = $query->row_array(); 
+            }else{ 
+                $this->db->order_by('order_status', 'ASC'); 
+                if(array_key_exists("start",$params) && array_key_exists("limit",$params)){ 
+                    $this->db->limit($params['limit'],$params['start']); 
+                }elseif(!array_key_exists("start",$params) && array_key_exists("limit",$params)){ 
+                    $this->db->limit($params['limit']); 
+                } 
+                 
+                $query = $this->db->get(); 
+                $result = ($query->num_rows() > 0)?$query->result_array():FALSE; 
+            } 
+        } 
+         
+        // Return fetched data 
+        return $result; 
+    }
+    
+    function get_user_transaction_pagination($params = array()){ 
+        $this->db->select('*'); 
+        $this->db->from($this->table_name); 
+        $this->db->where(['payment_status'=> 1, 'mem_id'=> $this->session->mem_id]); 
+
+         
+        if(array_key_exists("returnType", $params) && $params['returnType'] == 'count'){ 
+            $result = $this->db->count_all_results(); 
+        }
+        else
+        { 
+            if(array_key_exists("id", $params) || (array_key_exists("returnType", $params) && $params['returnType'] == 'single')){ 
+                if(!empty($params['id'])){ 
+                    $this->db->where('id', $params['id']); 
+                } 
+                $query = $this->db->get(); 
+                $result = $query->row_array(); 
+            }else{ 
+                $this->db->order_by('id', 'DESC'); 
+                if(array_key_exists("start",$params) && array_key_exists("limit",$params)){ 
+                    $this->db->limit($params['limit'],$params['start']); 
+                }elseif(!array_key_exists("start",$params) && array_key_exists("limit",$params)){ 
+                    $this->db->limit($params['limit']); 
+                } 
+                 
+                $query = $this->db->get(); 
+                $result = ($query->num_rows() > 0)?$query->result_array():FALSE; 
+            } 
+        } 
+         
+        // Return fetched data 
+        return $result; 
+    }
+
     function get_admin_orders()
     {
 

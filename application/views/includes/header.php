@@ -41,21 +41,38 @@
                             } ?>">
                     <a href="<?=base_url('faqs')?>">Faq's</a>
                 </li>
-                <li class="hide-big <?php if ($page == "signin") {
-                                echo 'active';
-                            } ?>">
-                    <a href="<?=base_url('signin')?>" class="webBtn">Signin</a>
-                </li>
-                <li class="hide-big <?php if ($page == "signup") {
-                                echo 'active';
-                            } ?>">
-                    <a href="<?=base_url('signup')?>" class="webBtn">Signup</a>
-                </li>
+                <?php if(empty($this->session->mem_id)): ?>
+                    <li class="hide-big <?php if ($page == "signin") {
+                                    echo 'active';
+                                } ?>">
+                        <a href="<?=base_url('signin')?>" class="webBtn">Signin</a>
+                    </li>
+                    <li class="hide-big <?php if ($page == "signup") {
+                                    echo 'active';
+                                } ?>">
+                        <a href="<?=base_url('signup')?>" class="webBtn">Signup</a>
+                    </li>   
+                <?php endif; ?>
+                
             </ul>
+            <?php if(!empty($this->session->mem_id)): ?>
+                <div class="proIco dropDown">
+                    <div class="inside dropBtn">
+                        <div class="proName semi"><?=$mem_data->mem_fname.' '.$mem_data->mem_lname?> <em>Profile</em></div>
+                        <div class="ico"><img src="<?=asset('images/team/4.png')?>" alt=""></div>
+                    </div>
+                    <ul class="proDrop dropCnt dropLst">
+                        <li><a href="<?=base_url('user/dashboard')?>"><i class="fi-dashboard"></i><span>Dashboard</span></a></li>
+                        <li><a href="<?=base_url('user/profile-settings')?>"><i class="fi-user"></i><span>Profile Settings</span></a></li>
+                        <li><a href="<?=base_url('signout')?>"><i class="fi-power-switch"></i><span>Signout</span></a></li>
+                    </ul>
+                </div>
+            <?php endif; ?>
             
         </nav>
-        <ul id="cta">
-               <li class="<?php if ($page == "signin") {
+        <?php if(empty($this->session->mem_id)): ?>
+            <ul id="cta">
+                <li class="<?php if ($page == "signin") {
                                 echo 'active';
                             } ?>">
                     <a href="<?=base_url('signin')?>">Signin</a>
@@ -65,8 +82,8 @@
                             } ?>">
                     <a href="<?=base_url('signup')?>">Signup</a>
                 </li>
-               
             </ul>
+        <?php endif; ?>
         <div class="clearfix"></div>
     </div>
 </header>

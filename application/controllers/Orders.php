@@ -30,7 +30,11 @@ class Orders extends MY_Controller
         {
             $this->form_validation->set_rules('fname', 'First Name', 'required');
             $this->form_validation->set_rules('lname', 'Last Name', 'required');
-            $this->form_validation->set_rules('email', 'Email Address', 'required|valid_email');
+            $this->form_validation->set_rules('email', 'Email Address', 'required|valid_email|is_unique[members.mem_email]',
+			[
+				'valid_email' => 'Please enter a valid email.',
+				'is_unique' => 'This email is already in use.'
+			]);
             $this->form_validation->set_rules('phone', 'Phone Number', 'required');
             $this->form_validation->set_rules('country', 'Country/Region', 'required');
             $this->form_validation->set_rules('city', 'City', 'required');
@@ -39,8 +43,8 @@ class Orders extends MY_Controller
             $this->form_validation->set_rules('address', 'Address', 'required');
         }
         
-        $this->form_validation->set_rules('channel_name', 'channel_name', 'required');
-        $this->form_validation->set_rules('channel_url', 'channel_url', 'required');
+        $this->form_validation->set_rules('channel_name', 'Channel Name', 'required');
+        $this->form_validation->set_rules('channel_url', 'Channel Url', 'required');
 		
 		if($this->form_validation->run()===FALSE)
 		{
@@ -52,6 +56,9 @@ class Orders extends MY_Controller
         {
 			$vals = html_escape($this->input->post());
             $vals['package_id'] = doDecode($vals['package_id']);
+			$package_detail = $this->master->get_data_row('packages', ['id'=> $vals['package_id']]);
+			$vals['total_price'] = $package_detail->price;
+			$vals['no_of_views'] = $package_detail->no_of_views;
             if(empty($this->session->mem_id))
             {
 
@@ -158,8 +165,13 @@ class Orders extends MY_Controller
 			'postal_code'=>$arr['postal_code'],
 			'payment_type'=>$arr['payment_type'],
 			'package_id'=>$arr['package_id'],
+			'total_price'=>$arr['total_price'],
 			'mem_id'=>$arr['mem_id'],
 			'txt_id'=>$arr['txt_id'],
+			'channel_name'=>$arr['channel_name'],
+			'channel_url'=>$arr['channel_url'],
+			'no_of_views'=>$arr['no_of_views'],
+			'order_date'=>date('Y-m-d'),
 
 		);
 		$order_id = $this->master->save('orders',$order_data);

@@ -19,6 +19,7 @@
 <!-- commonCss Css -->
 
 <link type="text/css" rel="stylesheet" href="<?= asset('css/commonCss.css') ?>">
+<link type="text/css" rel="stylesheet" href="<?= asset('css/toastr.min.css') ?>">
 
 <!-- Favicon -->
 

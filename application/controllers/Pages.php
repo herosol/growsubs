@@ -162,32 +162,39 @@ class Pages extends MY_Controller
         }
     }
 
+    function success($order_id)
+	{
+        $this->data['order_id'] = $order_id;
+        $this->data['order'] = $this->master->get_data_row('packages', doDecode($order_id)); 
+        $this->load->view('pages/thankyou', $this->data);
+	}
+
     function paypal($encoded_id){
         $this->load->library('Paypal_lib');
         $id = intval(doDecode($encoded_id));
-        $row = $this->master->getRow('orders',array('id'=>$id));
+        $row = $this->master->getRow('orders', array('id'=>$id));
         if($row){
             $this->data['post'] = array(
                 "item_name" => "Paypal Payment",
                 "currency" => "USD",
-                "amount" => $row->total_price+$row->shipping_fee,
+                "amount" => $row->total_price,
                 "custom" => $id
             );
             // pr($this->data['post']);
             $notify_url = site_url('order-notify') ;
             $this->data['setting']=array(
-                "website_name" => "".$this->data['settings']->site_name."",
+                "website_name" => "".$this->data['site_settings']->site_name."",
                 "url" => "". base_url()."",
                 "notify_url" =>"".$notify_url."",
                 "return_url" => "".base_url()."success/".$encoded_id,
                 "cancel_url" => "".base_url()."cancel/".$encoded_id,
             );
             
-            if($this->data['settings']->site_paypal_environment):
+            if($this->data['site_settings']->site_paypal_environment):
                 $this->data['setting']["sandbox"] = true;
-                $this->data['setting']["sandbox_paypal"] = $this->data['settings']->site_sandbox_paypal;
+                $this->data['setting']["sandbox_paypal"] = $this->data['site_settings']->site_sandbox_paypal;
             else:
-                $this->data['setting']["live_paypal"] = $this->data['settings']->site_live_paypal;
+                $this->data['setting']["live_paypal"] = $this->data['site_settings']->site_live_paypal;
             endif;  
 		// die('here');
             $this->load->view("includes/processing", $this->data);
