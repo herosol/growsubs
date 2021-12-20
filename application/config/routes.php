@@ -35,6 +35,7 @@ $route['user/orders/(:any)']    = 'user/dashboard/orders/$1';
 $route['user/transactions']        = 'user/dashboard/transactions';
 $route['user/transactions/(:any)'] = 'user/dashboard/transactions/$1';
 $route['user/order-detail/(:any)'] = 'user/dashboard/order_detail/$1';
+$route['user/support']           = 'user/dashboard/support';
 # PAYPAL
 $route['pay-now/(:num)'] = 'paypal/pay_now/$1';
 $route['success/(:any)'] = 'paypal/success/$1';

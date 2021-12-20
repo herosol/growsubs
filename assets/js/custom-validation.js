@@ -158,7 +158,7 @@ $(document).ready(function () {
 			mem_name: {
 				required: true,
 				minlength: 2,
-				maxlength: 20,
+				maxlength: 40,
 				lettersonly: true,
 			},
 			mem_email: {
@@ -186,7 +186,7 @@ $(document).ready(function () {
 			mem_name: {
 				required: "Name is required.",
 				minlength: "Name should contains atleast 2 letters.",
-				maxlength: "Name should not be greater than 20 letters.",
+				maxlength: "Name should not be greater than 40 letters.",
 				lettersonly: "Name should contains only letters.",
 			},
 			mem_email: {
@@ -232,322 +232,27 @@ $(document).ready(function () {
 		errorPlacement: function (error, element) {},
 	});
 
-	$("#vendorProfileSettings").validate({
-		errorElement: "div",
+	$("#userrProfileSettings").validate({
+		errorElement: "span",
+		errorClass: "validation-error",
 		rules: {
-			mem_fname: {
+			mem_name: {
 				required: true,
 				minlength: 2,
-				maxlength: 20,
-				noSpace: true,
+				maxlength: 40,
 				lettersonly: true,
 			},
-			mem_lname: {
+			mem_profile_heading: {
 				required: true,
-				minlength: 2,
-				maxlength: 20,
-				noSpace: true,
-				lettersonly: true,
-			},
-			mem_company_name: {
-				required: true,
-				minlength: 2,
-			},
-			mem_company_email: {
-				required: true,
-				email: true,
-			},
-			mem_company_phone: {
-				required: true,
-			},
-			mem_company_order_email: {
-				required: true,
-				email: true,
-			},
-			mem_company_website: {
-				required: true,
-			},
-			mem_company_trustpilot: {
-				required: true,
-			},
-			mem_company_pickdrop: {
-				required: true,
-			},
-			mem_company_walkin_facility: {
-				required: true,
-			},
-			mem_business_country: {
-				required: {
-					depends: function (element) {
-						return (
-							$("select#mem_company_walkin_facility option")
-								.filter(":selected")
-								.val() == "yes"
-						);
-					},
-				},
-			},
-			mem_business_state: {
-				required: {
-					depends: function (element) {
-						return (
-							$("select#mem_company_walkin_facility option")
-								.filter(":selected")
-								.val() == "yes"
-						);
-					},
-				},
-			},
-			mem_business_city: {
-				required: {
-					depends: function (element) {
-						return (
-							$("select#mem_company_walkin_facility option")
-								.filter(":selected")
-								.val() == "yes"
-						);
-					},
-				},
-			},
-			mem_business_zip: {
-				required: {
-					depends: function (element) {
-						return (
-							$("select#mem_company_walkin_facility option")
-								.filter(":selected")
-								.val() == "yes"
-						);
-					},
-				},
-			},
-			mem_business_address: {
-				required: {
-					depends: function (element) {
-						return (
-							$("select#mem_company_walkin_facility option")
-								.filter(":selected")
-								.val() == "yes"
-						);
-					},
-				},
-			},
-			pickup_zip: {
-				required: true,
-			},
-			mon_opening: {
-				required: {
-					depends: function (element) {
-						element = $(element);
-						let mon_closing = $("select#mon_closing option")
-							.filter(":selected")
-							.val();
-						if (mon_closing != "") {
-							return true;
-						}
-					},
-				},
-			},
-			mon_closing: {
-				required: {
-					depends: function (element) {
-						element = $(element);
-						let mon_opening = $("select#mon_opening option")
-							.filter(":selected")
-							.val();
-						if (mon_opening != "") {
-							return true;
-						}
-					},
-				},
-			},
-			tue_opening: {
-				required: {
-					depends: function (element) {
-						return (
-							$("select#tue_closing option").filter(":selected").val() != ""
-						);
-					},
-				},
-			},
-			tue_closing: {
-				required: {
-					depends: function (element) {
-						return (
-							$("select#tue_opening option").filter(":selected").val() != ""
-						);
-					},
-				},
-			},
-			wed_opening: {
-				required: {
-					depends: function (element) {
-						return (
-							$("select#wed_closing option").filter(":selected").val() != ""
-						);
-					},
-				},
-			},
-			wed_closing: {
-				required: {
-					depends: function (element) {
-						return (
-							$("select#wed_opening option").filter(":selected").val() != ""
-						);
-					},
-				},
-			},
-			thu_opening: {
-				required: {
-					depends: function (element) {
-						return (
-							$("select#thu_closing option").filter(":selected").val() != ""
-						);
-					},
-				},
-			},
-			thu_closing: {
-				required: {
-					depends: function (element) {
-						return (
-							$("select#thu_opening option").filter(":selected").val() != ""
-						);
-					},
-				},
-			},
-			fri_opening: {
-				required: {
-					depends: function (element) {
-						return (
-							$("select#fri_closing option").filter(":selected").val() != ""
-						);
-					},
-				},
-			},
-			fri_closing: {
-				required: {
-					depends: function (element) {
-						return (
-							$("select#fri_opening option").filter(":selected").val() != ""
-						);
-					},
-				},
-			},
-			sat_opening: {
-				required: {
-					depends: function (element) {
-						return (
-							$("select#sat_closing option").filter(":selected").val() != ""
-						);
-					},
-				},
-			},
-			sat_closing: {
-				required: {
-					depends: function (element) {
-						return (
-							$("select#sat_opening option").filter(":selected").val() != ""
-						);
-					},
-				},
-			},
-			sun_opening: {
-				required: {
-					depends: function (element) {
-						return (
-							$("select#sun_closing option").filter(":selected").val() != ""
-						);
-					},
-				},
-			},
-			sun_closing: {
-				required: {
-					depends: function (element) {
-						return (
-							$("select#sun_opening option").filter(":selected").val() != ""
-						);
-					},
-				},
-			},
-			mem_charges_per_miles: {
-				required: true,
-			},
-			mem_charges_free_over: {
-				required: true,
-			},
-			mem_charges_min_order: {
-				required: true,
-			},
-		},
-		messages: {
-			mem_fname: {
-				minlength: "First Name should contains atleast 2 letters.",
-				maxlength: "First Name should not be greater than 20 letters.",
-				noSpace: "First Name should contains only letters and avoid space.",
-				lettersonly: "First Name should contains only letters.",
-			},
-			mem_lname: {
-				minlength: "Last Name should contains atleast 2 letters.",
-				maxlength: "Last Name should not be greater than 20 letters.",
-				noSpace: "Last Name should contains only letters and avoid space.",
-				lettersonly: "Last Name should contains only letters.",
-			},
-		},
-		errorPlacement: function (error, element) {
-			if (
-				$.inArray(element.attr("id"), ["mem_fname", "mem_lname"]) !== -1 &&
-				error.text() != "This field is required."
-			) {
-				error.addClass("alert alert-danger alert-sm");
-				error.appendTo(
-					element.parents("form").find("div.alertMsg:first").show()
-				);
-				$("html, body").animate(
-					{
-						scrollTop:
-							element.parents("form").find("div.alertMsg:first").offset().top -
-							300,
-					},
-					"slow"
-				);
-			}
-			return false;
-		},
-	});
-
-	$("#buyerProfileSettings").validate({
-		errorElement: "div",
-		rules: {
-			mem_fname: {
-				required: true,
-				minlength: 2,
-				maxlength: 20,
-				noSpace: true,
-				lettersonly: true,
-			},
-			mem_lname: {
-				required: true,
-				minlength: 2,
-				maxlength: 20,
-				noSpace: true,
-				lettersonly: true,
-			},
-			mem_phone: {
-				required: true,
-			},
-			mem_dob: {
-				required: true,
-			},
-			mem_sex: {
-				required: true,
+				minlength: 5,
+				maxlength: 30,
 			},
 			mem_country: {
 				required: true,
 			},
-			mem_state: {
-				required: true,
-			},
 			mem_city: {
 				required: true,
+				lettersonly: true,
 			},
 			mem_zip: {
 				required: true,
@@ -555,38 +260,35 @@ $(document).ready(function () {
 			mem_address: {
 				required: true,
 			},
+			mem_bio: {
+				required: true,
+				minlength: 10,
+				maxlength: 100,
+			},
 		},
 		messages: {
-			mem_fname: {
-				minlength: "First Name should contains atleast 2 letters.",
-				maxlength: "First Name should not be greater than 20 letters.",
-				noSpace: "First Name should contains only letters and avoid space.",
-				lettersonly: "First Name should contains only letters.",
+			mem_name: {
+				required: "Name is required.",
+				minlength: "Name should contains atleast 2 letters.",
+				maxlength: "Name should not be greater than 30 letters.",
+				lettersonly: "Name should contains only letters.",
 			},
-			mem_lname: {
-				minlength: "Last Name should contains atleast 2 letters.",
-				maxlength: "Last Name should not be greater than 20 letters.",
-				noSpace: "Last Name should contains only letters and avoid space.",
-				lettersonly: "Last Name should contains only letters.",
+			mem_profile_heading: {
+				required: "Profile heading is required.",
+				minlength: "Profile heading should contains atleast 5 letters.",
+				maxlength: "Profile heading should not be greater than 30 letters.",
+			},
+			mem_bio: {
+				required: "Bio is required.",
+				minlength: "Bio should contains atleast 10 letters.",
+				maxlength: "Bio should not be greater than 100 letters.",
 			},
 		},
 		errorPlacement: function (error, element) {
-			if (
-				$.inArray(element.attr("id"), ["mem_fname", "mem_lname"]) !== -1 &&
-				error.text() != "This field is required."
-			) {
-				error.addClass("alert alert-danger alert-sm");
-				error.appendTo(
-					element.parents("form").find("div.alertMsg:first").show()
-				);
-				$("html, body").animate(
-					{
-						scrollTop:
-							element.parents("form").find("div.alertMsg:first").offset().top -
-							300,
-					},
-					"slow"
-				);
+			if (element.attr("name") == "confirm") {
+				error.appendTo($("#confirm-error"));
+			} else {
+				error.insertAfter(element);
 			}
 			return false;
 		},
@@ -922,30 +624,30 @@ $(document).ready(function () {
 			},
 		},
 		errorPlacement: function (error, element) {
-			if (
-				$.inArray(element.attr("id"), [
-					"msg",
-					"name",
-					"phone",
-					"email",
-					"subject",
-				]) !== -1 &&
-				error.text() != "This field is required."
-			) {
-				error.addClass("alert alert-danger alert-sm");
-				error.appendTo(
-					element.parents("form").find("div.alertMsg:first").show()
-				);
-				$("html, body").animate(
-					{
-						scrollTop:
-							element.parents("form").find("div.alertMsg:first").offset().top -
-							300,
-					},
-					"slow"
-				);
-			}
-			return false;
+			// if (
+			// 	$.inArray(element.attr("id"), [
+			// 		"msg",
+			// 		"name",
+			// 		"phone",
+			// 		"email",
+			// 		"subject",
+			// 	]) !== -1 &&
+			// 	error.text() != "This field is required."
+			// ) {
+			// 	error.addClass("alert alert-danger alert-sm");
+			// 	error.appendTo(
+			// 		element.parents("form").find("div.alertMsg:first").show()
+			// 	);
+			// 	$("html, body").animate(
+			// 		{
+			// 			scrollTop:
+			// 				element.parents("form").find("div.alertMsg:first").offset().top -
+			// 				300,
+			// 		},
+			// 		"slow"
+			// 	);
+			// }
+			// return false;
 		},
 	});
 

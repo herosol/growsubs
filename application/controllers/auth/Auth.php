@@ -149,10 +149,10 @@ class Auth extends MY_Controller
             $res['frm_reset'] = 0;
             $res['status'] = 0;
 
-            $this->form_validation->set_rules('mem_name', 'First Name', 'trim|required|min_length[2]|max_length[20]', 
+            $this->form_validation->set_rules('mem_name', 'First Name', 'trim|required|min_length[2]|max_length[40]', 
                 [
                     'min_length' => 'First Name should contains atleast 2 letters.',
-                    'max_length' => 'First Name should not be greater than 20 letters.'
+                    'max_length' => 'First Name should not be greater than 40 letters.'
                 ]);
             $this->form_validation->set_rules('mem_email', 'Email', 'trim|required|valid_email|is_unique[members.mem_email]', 
                 [

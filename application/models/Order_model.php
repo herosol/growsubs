@@ -22,6 +22,16 @@ class Order_model extends CRUD_Model
         return $query->result();
     }
 
+    function get_user_total_invested()
+    {
+
+        $this->db->select("SUM(total_price) as total_invested");
+        $this->db->from($this->table_name);
+        $this->db->where(['payment_status'=> 1, 'mem_id'=> $this->session->mem_id]);
+        $query = $this->db->get();
+        return $query->row()->total_invested;
+    }
+
     function get_user_transactions()
     {
 

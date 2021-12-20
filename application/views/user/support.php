@@ -3,11 +3,11 @@
 
 <head>
     <title>Grow Subs - Help and Support</title>
-    <?php require_once('../includes/site-master.php'); ?>
+    <?php $this->load->view('includes/site-master'); ?>
 </head>
 
 <body id="home-page" class="dashboard-side dash-body">
-<?php require_once('../includes/header-logged.php'); ?>
+<?php $this->load->view('includes/header-logged'); ?>
 <main index>
 <section id="dash">
 	 <div id="dashboard" class="order-form">
@@ -19,36 +19,14 @@
                             <h1 class="secHeading">General Questions</h1>
                         </div>
                         <div class="faqLst">
+                            <?php foreach($faqs as $index => $faq): ?>
                                 <div class="faqBlk">
-                                    <h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit?</h5>
+                                    <h5><?=$faq->question?></h5>
                                     <div class="txt">
-                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.</p>
+                                        <p><?=$faq->answer?></p>
                                     </div>
                                 </div>
-                                <div class="faqBlk">
-                                    <h5>Earum debitis in praesentium harum?</h5>
-                                    <div class="txt">
-                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.</p>
-                                    </div>
-                                </div>
-                                <div class="faqBlk">
-                                    <h5>Similique mollitia facilis ut, minima iusto?</h5>
-                                    <div class="txt">
-                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.</p>
-                                    </div>
-                                </div>
-                                <div class="faqBlk">
-                                    <h5>Natus quo earum soluta laborum amet laudantium dolorum?</h5>
-                                    <div class="txt">
-                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.</p>
-                                    </div>
-                                </div>
-                                <div class="faqBlk">
-                                    <h5>Nonumy eirmod tempor quae sunt dicta?</h5>
-                                    <div class="txt">
-                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.</p>
-                                    </div>
-                                </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
@@ -58,39 +36,39 @@
                             <h4>What Are You Waiting For?</h4>
                             <p>Please fill this form to get more information</p>
                         </div>
-                        <form action="" method="post">
-                                
-                                <div class="row formRow">
+                        <form action="<?=base_url('contact-us')?>" method="POST" class="frmAjax" id="frmContact">
+                        <div class="alertMsg" style="display:none"></div>
+                        <div class="row formRow">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xx-12">
+                            <div class="txtGrp">
+                                    <label class="">Full Name</label>
+                                    <input type="text" name="name" value="" class="txtBox"></div>
+                                </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xx-12">
                                 <div class="txtGrp">
-                                        <label class="">Full Name</label>
-                                        <input type="text" name="" value="" class="txtBox"></div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xx-12">
-                                    <div class="txtGrp">
-                                        <label>Email</label>
-                                        <input type="text" name="" value="" class="txtBox"></div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xx-12">
-                                    <div class="txtGrp">
-                                        <label>Phone Number</label>
-                                        <input type="text" name="" value="" class="txtBox"></div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xx-12">
-                                    <div class="txtGrp">
-                                        <label>Subject</label>
-                                        <input type="text" name="" value="" class="txtBox"></div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xx-12">
-                                        <div class="txtGrp">
-                                        <label>Message</label>
-                                        <textarea class="txtBox" name=""></textarea></div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xx-12">
-                                        <button type="submit" class="webBtn">Submit</button>
-                                    </div>
+                                    <label>Email</label>
+                                    <input type="text" name="email" value="" class="txtBox"></div>
                                 </div>
-                            </form>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xx-12">
+                                <div class="txtGrp">
+                                    <label>Phone Number</label>
+                                    <input type="text" name="phone" value="" class="txtBox"></div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xx-12">
+                                <div class="txtGrp">
+                                    <label>Subject</label>
+                                    <input type="text" name="subject" value="" class="txtBox"></div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xx-12">
+                                    <div class="txtGrp">
+                                    <label>Message</label>
+                                    <textarea class="txtBox" name="msg"></textarea></div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xx-12">
+                                    <button type="submit" class="webBtn">Submit</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -98,7 +76,7 @@
 	 </div>
 </section>
 </main>
-<?php require_once('../includes/commonjs.php'); ?>
+<?php $this->load->view('includes/commonjs'); ?>
 </body>
 
 </html>

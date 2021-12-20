@@ -17,17 +17,17 @@
             </div>
             <div class="blk topBlk">
                 <div class="icoBlk">
-                    <div class="ico"><img src="<?=asset('images/team/2.png')?>" alt=""></div>
+                    <div class="ico"><img src="<?= get_site_image_src("members", $mem_data->mem_image, '300p_'); ?>" alt=""></div>
                     <h3 class="bold">Welcome<?= $mem_data->mem_first_time_login == 'no' ? ' back' : '' ?>, <span class="regular"><?=$mem_data->mem_fname.' '.$mem_data->mem_lname?></span></h3>
                 </div>
                 <ul class="blkLst text-center">
                     <li>
-                        <div class="price_bold">23</div>
+                        <div class="price_bold"><?=$total_orders?></div>
                         <strong>Total Orders</strong>
                     </li>
                     <li>
-                        <div class="price_bold">$978</div>
-                        <strong>Total Earned</strong>
+                        <div class="price_bold">$<?=$total_invested?></div>
+                        <strong>Total Transactions Amount</strong>
                     </li>
                 </ul>
             </div>

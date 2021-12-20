@@ -119,10 +119,7 @@ $(document).ready(function () {
 				if (rs.status == 1) {
 					setTimeout(function () {
 						if (typeof rs.dp_image !== undefined) {
-							$("#dp-image-head").html(rs.dp_image);
-						}
-						if (typeof rs.name_head !== undefined) {
-							$("#name-head").html(rs.name_head);
+							$("#member-header-image").html(rs.dp_image);
 						}
 
 						if (rs.frm_reset) {

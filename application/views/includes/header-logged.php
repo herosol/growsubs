@@ -27,7 +27,7 @@
                             } ?>">
                     <a href="<?=base_url('user/transactions')?>">Transections</a>
                 </li>
-                <li class="<?php if ($page == "supprot") {
+                <li class="<?php if ($page == "support") {
                                 echo 'active';
                             } ?>">
                     <a href="<?=base_url('user/support')?>">Support</a>
@@ -38,7 +38,9 @@
         <div class="proIco dropDown">
             <div class="inside dropBtn">
                 <div class="proName semi"><?=$mem_data->mem_fname.' '.$mem_data->mem_lname?> <em>Profile</em></div>
-                <div class="ico"><img src="<?=asset('images/team/4.png')?>" alt=""></div>
+                <div class="ico" id="member-header-image">
+                    <img src="<?= get_site_image_src("members", $mem_data->mem_image, 'thumb_'); ?>" alt="">
+                </div>
             </div>
             <ul class="proDrop dropCnt dropLst">
                 <li><a href="<?=base_url()?>"><i class="fi-home"></i><span>Home</span></a></li>

@@ -59,7 +59,7 @@
                 <div class="proIco dropDown">
                     <div class="inside dropBtn">
                         <div class="proName semi"><?=$mem_data->mem_fname.' '.$mem_data->mem_lname?> <em>Profile</em></div>
-                        <div class="ico"><img src="<?=asset('images/team/4.png')?>" alt=""></div>
+                        <div class="ico"><img src="<?= get_site_image_src("members", $mem_data->mem_image, 'thumb_'); ?>" alt=""></div>
                     </div>
                     <ul class="proDrop dropCnt dropLst">
                         <li><a href="<?=base_url('user/dashboard')?>"><i class="fi-dashboard"></i><span>Dashboard</span></a></li>

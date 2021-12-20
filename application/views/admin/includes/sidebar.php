@@ -53,12 +53,6 @@
                     <span class="title">Manage Orders</span>
                 </a>
             </li>
-            <li class="opened <?= ($this->uri->segment(2) == 'invoices') ? 'active' : '' ?>">
-                <a href="<?= site_url(ADMIN.'/invoices') ?>">
-                    <i class="fa fa-file"></i>
-                    <span class="title">Manage Invoices</span>
-                </a>
-            </li>
             <li class="opened<?= $this->uri->segment('2') == 'contact' ? ' active' : '' ?>">
                 <a href="<?= site_url(ADMIN.'/contact') ?>">
                     <i class="fa fa-comments"></i>
