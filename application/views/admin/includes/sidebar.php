@@ -27,25 +27,11 @@
                     <span class="title">Dashboard</span>
                 </a>
             </li>
-            <li class=" <?= ($this->uri->segment(2) == 'vendors' || $this->uri->segment(2) == 'individuals') ? ' opened  active' : '' ?>">
-                <a href="javascript:void(0)">
-                    <i class="fa fa-users"></i>
+            <li class="opened <?= ($this->uri->segment(2) == 'members') ? 'active' : '' ?>">
+                <a href="<?= site_url(ADMIN.'/members') ?>">
+                    <i class="fa fa-file"></i>
                     <span class="title">Manage Members</span>
                 </a>
-                <ul>
-                    <li class=" <?= ($this->uri->segment(3) == 'vendors') ? ' active' : '' ?>">
-                        <a href="<?= site_url(ADMIN.'/vendors') ?>">
-                        <i class="fa fa-user"></i>
-                            <span class="title">Vendors</span>
-                        </a>
-                    </li>
-                    <li class=" <?= ($this->uri->segment(3) == 'individuals') ? ' active' : '' ?>">
-                        <a href="<?= site_url(ADMIN.'/individuals') ?>">
-                            <i class="fa fa-user"></i>
-                            <span class="title">Individuals </span>
-                        </a>
-                    </li>
-                </ul>
             </li>
             <li class="opened <?= ($this->uri->segment(2) == 'orders') ? 'active' : '' ?>">
                 <a href="<?= site_url(ADMIN.'/orders') ?>">

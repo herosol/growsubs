@@ -90,7 +90,7 @@
                             <td class="text-center"><?= $row->subject ?></td>
                             <td class="text-center"><?= substr($row->msg,0,70) ?>...</td>
                             <td class="text-center"><?php echo date("D, d M Y", $time); ?></td>
-                            <td class="text-center"><?= $row->status == '1' ? '<strong class="text-success">Read</strong>' : '<strong class="text-danger">UnRead</strong>'; ?></td>
+                            <td class="text-center"><?= get_contact_seen_status($row->status)?></td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary" data-toggle="dropdown"> Action <span class="caret"></span></button>

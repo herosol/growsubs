@@ -108,7 +108,7 @@
                         <td class=""><?=$row->price ?></td>
                         <td><b><?= $row->value ; ?></b></td>
                         <td><b><?= $row->you_save ; ?></b></td>
-                        <td class="text-center"><?= getStatus($row->status); ?></td>
+                        <td class="text-center"><?= get_member_active_status($row->status); ?></td>
                         <td class="text-center">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Action <span class="caret"></span></button>

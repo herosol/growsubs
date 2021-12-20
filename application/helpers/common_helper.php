@@ -594,6 +594,7 @@ function get_order_status_label($status)
     }
 }
 
+
 function get_order_status_user($status)
 {
     if ($status == '0' || $status == '1') {
@@ -605,6 +606,27 @@ function get_order_status_user($status)
     }
     else if ($status == '4') {
         return '<span class="badge red">Cancelled</span>';
+    }
+}
+
+
+function get_contact_seen_status($status)
+{
+    if ($status == '0') {
+        return '<span class="badge blue">Un Seen</span>';
+    }
+    else if ($status == '1') {
+        return '<span class="badge green">Seen</span>';
+    }
+}
+
+function get_member_active_status($status)
+{
+    if ($status == '0') {
+        return '<span class="badge red">In active</span>';
+    }
+    else if ($status == '1') {
+        return '<span class="badge green">Active</span>';
     }
 }
 

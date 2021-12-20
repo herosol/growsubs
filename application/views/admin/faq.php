@@ -82,7 +82,7 @@
                         <tr class="odd gradeX">
                             <td class="text-center"><?= $row->sort_order; ?></td>
                             <td><b><?= $row->question; ?></b></td>                     
-                            <td class="text-center"><?= getStatus($row->status); ?></td>
+                            <td class="text-center"><?= get_member_active_status($row->status); ?></td>
                             <td class="text-center">
                                 <a href="<?= site_url(ADMIN.'/faq/manage/'.$row->id); ?>">Edit</a> |
                                 <a href="<?= site_url(ADMIN.'/faq/delete/'.$row->id); ?>" onclick="return confirm('Your are about to delete this FAQ. Press OK to continue.');">Delete</a>
