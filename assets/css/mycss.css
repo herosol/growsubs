@@ -1717,6 +1717,20 @@ header .proIco .dropLst > li > a > small {
 	color: #ffcb00;
 }
 
+.app_load {
+	position: relative;
+	min-height: 20rem;
+}
+.app_load .spinner {
+	width: 4rem;
+	height: 4rem;
+	border: 0.4rem solid #008cff;
+	border-right: 0.4rem solid rgba(7, 22, 35, 0.05);
+	border-radius: 75%;
+	-webkit-animation: spin 0.5s linear infinite;
+	animation: spin 0.5s linear infinite;
+}
+
 .red {
 	background: #ff5465;
 }

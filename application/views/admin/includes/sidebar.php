@@ -123,6 +123,12 @@
                             <span class="title">Privacy Policy</span>
                         </a>
                     </li>
+                    <li class=" <?= ($this->uri->segment(3) == 'refund_policy') ? ' active' : '' ?>">
+                        <a href="<?= site_url(ADMIN.'/sitecontent/refund_policy') ?>">
+                            <i class="entypo-doc-text  "></i>
+                            <span class="title">Refund Policy</span>
+                        </a>
+                    </li>
                     <li class=" <?= ($this->uri->segment(3) == 'footer') ? ' active' : '' ?>">
                         <a href="<?= site_url(ADMIN.'/sitecontent/footer') ?>">
                             <i class="entypo-doc-text  "></i>

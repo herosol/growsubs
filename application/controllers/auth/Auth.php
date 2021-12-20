@@ -328,20 +328,13 @@ class Auth extends MY_Controller
         if ($row = $this->member_model->getMemCode($vcode, intval($this->session->mem_id))) {
             if ($this->session->has_userdata('mem_id') && $this->session->mem_id != $row->mem_id) {
                 setMsg('info', 'You are already logged in with different email.');
-                if ($row->mem_type == 'vendor')
-                    redirect('vendor/dashboard', 'refresh');
-                else
-                    redirect('buyer/dashboard', 'refresh');
-                exit;
+                redirect('user/dashboard', 'refresh');
+                
             }
             $this->member_model->save(['mem_verified' => 1, 'mem_code' => ''], $row->mem_id);
-
+            
             setMsg('success', 'Your account has been successfully verified.');
-            if ($row->mem_type == 'vendor')
-                redirect('vendor/dashboard', 'refresh');
-            else
-                redirect('buyer/dashboard', 'refresh');
-            exit;
+            redirect('user/dashboard', 'refresh');
         } else {
             redirect('', 'refresh');
             exit;

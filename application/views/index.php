@@ -90,98 +90,23 @@
                     <p><?= $content['4sec_tagline'] ?></p>
                 </div>
                 <div class="flex">
-                    <div class="col">
-                        <div class="inner">
-                            <div class="top-package">
-                                <h4>Free</h4>
-                                <h3>Starter</h3>
-                                <h6>Free Forever!</h6>
-                            </div>
-                            <div class="inner-package">
-                                <ul>
-                                    <li>Gain 5 Subscribers in 12 Hours</li>
-                                    <li>You Subscribe & Like 6 Videos</li>
-                                    <li>You Manually Activate Plan</li>
-                                    <li>Activate 1x Every 12 Hours</li>
-                                    <li>Subscriber Count Must Be Public</li>
-                                    <li>Must Have 1+ Videos Posted</li>
-                                    <li>Stop Using At Any Time!</li>
-                                </ul>
-                            </div>
-                            <div class="bTn">
-                                <a href="?" class="webBtn">Get Started</a>
+                    <?php foreach($packages as $index => $package): ?>
+                        <div class="col">
+                            <div class="inner">
+                                <div class="top-package">
+                                    <h4><?=$package->package_name?></h4>
+                                    <h3><?=$package->price==0?'Starter':'$'.$package->price?></h3>
+                                    <h6><?=$package->price==0?'Free Forever!':'Road to pro'?></h6>
+                                </div>
+                                <div class="inner-package">
+                                    <?=html_entity_decode($package->detail)?>
+                                </div>
+                                <div class="bTn">
+                                    <a href="<?=base_url('order/'.doEncode($package->id))?>" class="webBtn">Get Started</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="inner">
-                            <div class="top-package">
-                                <h4>ENTERPRISE</h4>
-                                <h3><sub>$</sub>20</h3>
-                                <h6>Road to Pro</h6>
-                            </div>
-                            <div class="inner-package">
-                                <ul>
-                                    <li>Gain 5 Subscribers in 12 Hours</li>
-                                    <li>You Subscribe & Like 6 Videos</li>
-                                    <li>You Manually Activate Plan</li>
-                                    <li>Activate 1x Every 12 Hours</li>
-                                    <li>Subscriber Count Must Be Public</li>
-                                    <li>Must Have 1+ Videos Posted</li>
-                                    <li>Stop Using At Any Time!</li>
-                                </ul>
-                            </div>
-                            <div class="bTn">
-                                <a href="?" class="webBtn">Get Started</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="inner">
-                            <div class="top-package">
-                                <h4>ELITE</h4>
-                                <h3><sub>$</sub>60</h3>
-                                <h6>Road to Pro</h6>
-                            </div>
-                            <div class="inner-package">
-                                <ul>
-                                    <li>Gain 5 Subscribers in 12 Hours</li>
-                                    <li>You Subscribe & Like 6 Videos</li>
-                                    <li>You Manually Activate Plan</li>
-                                    <li>Activate 1x Every 12 Hours</li>
-                                    <li>Subscriber Count Must Be Public</li>
-                                    <li>Must Have 1+ Videos Posted</li>
-                                    <li>Stop Using At Any Time!</li>
-                                </ul>
-                            </div>
-                            <div class="bTn">
-                                <a href="?" class="webBtn">Get Started</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="inner">
-                            <div class="top-package">
-                                <h4>CELEBRITY</h4>
-                                <h3><sub>$</sub>80</h3>
-                                <h6>Road to Pro</h6>
-                            </div>
-                            <div class="inner-package">
-                                <ul>
-                                    <li>Gain 5 Subscribers in 12 Hours</li>
-                                    <li>You Subscribe & Like 6 Videos</li>
-                                    <li>You Manually Activate Plan</li>
-                                    <li>Activate 1x Every 12 Hours</li>
-                                    <li>Subscriber Count Must Be Public</li>
-                                    <li>Must Have 1+ Videos Posted</li>
-                                    <li>Stop Using At Any Time!</li>
-                                </ul>
-                            </div>
-                            <div class="bTn">
-                                <a href="?" class="webBtn">Get Started</a>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
@@ -193,7 +118,7 @@
                 <div class="flex">
                     <div class="colL">
                         <div class="inner">
-                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/dDJ44I43Tfw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <?=convertYoutube($content['5sec_youtube_link'])?>
                         </div>
                     </div>
                     <div class="colR">
@@ -204,7 +129,7 @@
                 </div>
                 <div class="bottom-info">
                     <?= $content['5sec_bottom_content'] ?>
-                     <div class="read-more">
+                     <div class="read-more hidden">
                          Read More
                      </div>  
                 </div>

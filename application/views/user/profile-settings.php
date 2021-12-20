@@ -16,11 +16,11 @@
                 <h1 class="secHeading">Profile Settings</h1>
             </div>
             <!-- <form action="" method="post"> -->
-                <div class="blk">
+                <div class="blk hidden">
                     <div class="_header">
                         <h3>Contact Info</h3>
                     </div>
-                    <div class="formBlk">
+                    <div class="formBlk hidden">
                         <div class="row formRow">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-xx-6">
                                 <div class="txtGrp verifyBlk">

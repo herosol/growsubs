@@ -13,11 +13,12 @@
         <div class="contain">
             <div class="upside">
                 <h3><?=$footer['2sec_heading']?><span><?=$footer['2sec_tagline']?></span></h3>
-                <form action="" method="post">
+                    <form action="<?= base_url('newsletter')?>" method="post" autocomplete="off" class="frmAjax" id="newsletterFrm">
                         <label for="email"><?=$footer['subs_heading']?></label>
+                        <div class="alertMsg" style=""></div>
                         <div class="inside">
                             <input type="text" name="email" id="email" class="txtBox" placeholder="<?=$footer['subs_placeholder']?>">
-                            <button type="submit" class="webBtn"><?=$footer['subs_button_text']?></button>
+                            <button type="submit" class="webBtn"><i class="spinner hidden"></i><?=$footer['subs_button_text']?></button>
                         </div>
                     </form>
             </div>
@@ -88,9 +89,9 @@
             <div class="copyright flex">
                 <p><?= $site_settings->site_copyright ?></p>
                 <ul class="lst flex">
-                        <li><a href="privacy.php">Privacy policy</a></li>
-                        <li><a href="term.php">Terms and conditions</a></li>
-                        <li><a href="refund-policy.php">Refund policy</a></li>
+                        <li><a href="<?=base_url('privacy-policy')?>">Privacy policy</a></li>
+                        <li><a href="<?=base_url('terms-and-conditions')?>">Terms and conditions</a></li>
+                        <li><a href="<?=base_url('refund-policy')?>">Refund policy</a></li>
                     </ul>
             </div>
         </div>

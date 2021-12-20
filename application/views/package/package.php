@@ -43,23 +43,7 @@
                                     </ul>
                                 </div>
                                 <div class="inner-package">
-                                    <ul>
-                                        <li>
-                                            <p><strong>Service</strong></p>
-                                            <p>1000 Views</p>
-                                            <p>50 Likes</p>
-                                            <p>100 Shares</p>
-                                            <p>10 Comments</p>
-                                        </li>
-                                        <li>
-                                            <p><strong>Site Price</strong></p>
-                                            <p>$ 20</p>
-                                            <p>$ 7</p>
-                                            <p>$ 10</p>
-                                            <p>$ 20</p>
-                                        </li>
-                                    </ul>
-                                    <h4>Service is delivered to 1 video maximum.</h4>
+                                    <?=html_entity_decode($package->detail)?>
                                 </div>
                                 <div class="bTn">
                                     <a href="<?=base_url('order/'.doEncode($package->id))?>" class="webBtn">Get Started</a>

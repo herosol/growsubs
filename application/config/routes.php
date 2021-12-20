@@ -11,8 +11,9 @@ $route['packages']         = 'pages/packages';
 $route['testimonials']     = 'pages/testimonials';
 $route['faqs']             = 'pages/faq';
 $route['contact-us']       = 'pages/contact';
-$route['terms-conditions'] = 'pages/terms_conditions';
+$route['terms-and-conditions'] = 'pages/terms_conditions';
 $route['privacy-policy']   = 'pages/privacy_policy';
+$route['refund-policy']   = 'pages/refund_policy';
 # AUTHENTICATION PAGES
 $route['signup']           = 'auth/auth/signup';
 $route['signin']           = 'auth/auth/signin';
@@ -23,6 +24,7 @@ $route['resend-email']     = 'auth/auth/resend_email';
 $route['verification/(:any)'] = 'auth/auth/verification/$1';
 $route['newsletter']       = 'auth/auth/newsletter';
 $route['signout']          = 'auth/auth/signout';
+$route['newsletter']       = 'index/newsletter';
 # ORDER PAGES
 $route['order/(:any)']     = 'orders/index/$1';
 $route['pay-now']          = 'orders/pay_now';
@@ -41,7 +43,6 @@ $route['pay-now/(:num)'] = 'paypal/pay_now/$1';
 $route['success/(:any)'] = 'paypal/success/$1';
 $route['cancel/(:any)'] = 'paypal/cancel/$1';
 $route['order-notify'] = 'paypal/order_notify';
-// $route['booking-notify'] = 'paypal/booking_notify';
 $route['paypal/(:any)'] =  'Pages/paypal/$1';
 
 # ADMIN

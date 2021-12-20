@@ -17,7 +17,7 @@ class Master extends CI_Model
 		}
 	}
 
-	function get_data_rows($table_name,$where='',$order='',$order_colum='id'){
+	function get_data_rows($table_name, $where='',$order='',$order_colum='id'){
 		if(!empty($where)){
 			$this->db->where($where);
 		}

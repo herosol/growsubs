@@ -296,6 +296,30 @@ class Sitecontent extends Admin_Controller
         $this->load->view(ADMIN . '/includes/siteMaster', $this->data);
     }
 
+    function refund_policy() {
+        $this->data['enable_editor'] = TRUE;
+        $this->data['pageView'] = ADMIN . '/site_refund_policy';
+        if ($vals = $this->input->post()) {
+            $content_row = $this->master->getRow($this->table_name, array('ckey' => 'refund_policy'));
+            $content_row = unserialize($content_row->code);
+            if(!is_array($content_row))
+                $content_row = array();
+                
+            unset($vals['detail']);
+            $data = serialize(array_merge($content_row,$vals));
+            $this->master->save($this->table_name, array('code' => $data, 'full_code' => $this->input->post('detail')), 'ckey', 'refund_policy');
+            setMsg('success', 'Settings updated successfully !');
+            redirect(ADMIN . "/sitecontent/refund_policy");
+            exit;
+        }
+
+        $this->data['content'] = $this->master->getRow($this->table_name, array('ckey' => 'refund_policy'));
+        $this->data['row'] = unserialize($this->data['content']->code);
+        $this->load->view(ADMIN . '/includes/siteMaster', $this->data);
+    }
+
+    
+
     function faq()
     {
         $this->data['enable_editor'] = TRUE;

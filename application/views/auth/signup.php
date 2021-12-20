@@ -56,7 +56,7 @@
                                 <div class="txtGrp">
                                     <div class="lblBtn">
                                         <input type="checkbox" name="confirm" id="agree">
-                                        <label for="agree">By signing up, I agree to GROWSUBS <a href="privacy.php">Privacy policy</a> and <a href="term.php">Terms and conditions</a></label>
+                                        <label for="agree">By signing up, I agree to GROWSUBS <a href="<?=base_url('privacy-policy')?>" target="_blank">Privacy policy</a> and <a href="<?=base_url('terms-and-conditions')?>" target="_blank">Terms and conditions</a></label>
                                     </div>
                                     <span id="confirm-error"></span>
                                 </div>

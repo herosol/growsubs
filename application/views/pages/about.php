@@ -72,7 +72,7 @@
                 <div class="flex">
                     <div class="colL">
                         <div class="inner">
-                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/dDJ44I43Tfw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <?=convertYoutube($home_content['5sec_youtube_link'])?>
                         </div>
                     </div>
                     <div class="colR">
@@ -83,7 +83,7 @@
                 </div>
                 <div class="bottom-info">
                     <?= $home_content['5sec_bottom_content'] ?>
-                     <div class="read-more">
+                     <div class="read-more hidden">
                          Read More
                      </div>  
                 </div>

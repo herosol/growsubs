@@ -51,7 +51,7 @@ class Pages extends MY_Controller
         if ($data) {
             $this->data['content'] = unserialize($data->code);
             $this->data['meta_desc'] = json_decode($meta->content);
-            $this->data['packages'] = $this->master->get_data_rows('packages', ['status'=> 1], 'ASC', 'no_of_views');
+            $this->data['packages'] = $this->master->get_data_rows('packages', ['status'=> 1, 'is_featured'=> 0], 'ASC', 'no_of_views');
             $this->load->view('package/package', $this->data);
         } else {
             show_404();
@@ -140,7 +140,7 @@ class Pages extends MY_Controller
             $this->data['content'] = unserialize($data->code);
             $this->data['details'] = ($data->full_code);
             $this->data['meta_desc'] = json_decode($meta->content);
-            $this->load->view('pages/terms-and-conditions', $this->data);
+            $this->load->view('pages/term', $this->data);
         } else {
             show_404();
         }
@@ -156,7 +156,23 @@ class Pages extends MY_Controller
             $this->data['content'] = unserialize($data->code);
             $this->data['details'] = ($data->full_code);
             $this->data['meta_desc'] = json_decode($meta->content);
-            $this->load->view('pages/privacy-policy', $this->data);
+            $this->load->view('pages/privacy', $this->data);
+        } else {
+            show_404();
+        }
+    }
+
+    function refund_policy()
+    {
+        $meta = $this->page->getMetaContent('refund_policy');
+        $this->data['page_title'] = $meta->page_name;
+        $this->data['slug'] = $meta->slug;
+        $data = $this->page->getPageContent('refund_policy');
+        if ($data) {
+            $this->data['content'] = unserialize($data->code);
+            $this->data['details'] = ($data->full_code);
+            $this->data['meta_desc'] = json_decode($meta->content);
+            $this->load->view('pages/refund-policy', $this->data);
         } else {
             show_404();
         }

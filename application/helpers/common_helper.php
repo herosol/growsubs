@@ -609,6 +609,14 @@ function get_order_status_user($status)
     }
 }
 
+function convertYoutube($string) {
+    return preg_replace(
+        "/\s*[a-zA-Z\/\/:\.]*youtu(be.com\/watch\?v=|.be\/)([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i",
+        "<iframe width=\"100%\" height=\"315\" src=\"//www.youtube.com/embed/$2\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+        $string
+    );
+}
+
 
 function get_contact_seen_status($status)
 {
@@ -629,6 +637,18 @@ function get_member_active_status($status)
         return '<span class="badge green">Active</span>';
     }
 }
+
+function get_package_is_featured_status($status)
+{
+    if ($status == '0') {
+        return '<span class="badge blue">No</span>';
+    }
+    else if ($status == '1') {
+        return '<span class="badge yellow">Yes</span>';
+    }
+}
+
+
 
 function get_order_payment_status($status)
 {

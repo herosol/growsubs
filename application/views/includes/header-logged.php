@@ -25,7 +25,7 @@
                 <li class="<?php if ($page == "transactions") {
                                 echo 'active';
                             } ?>">
-                    <a href="<?=base_url('user/transactions')?>">Transections</a>
+                    <a href="<?=base_url('user/transactions')?>">Transactions</a>
                 </li>
                 <li class="<?php if ($page == "support") {
                                 echo 'active';

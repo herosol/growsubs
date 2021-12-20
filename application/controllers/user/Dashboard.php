@@ -23,7 +23,7 @@ class Dashboard extends MY_Controller
 
     public function profile_settings()
     {
-        $this->isMemLogged(false);
+        $this->isMemLogged(true);
         $mem_id = $this->session->mem_id;
         if ($this->input->post()) {
             $res = array();
@@ -94,7 +94,7 @@ class Dashboard extends MY_Controller
 
     public function orders()
     {
-        $this->isMemLogged(false);
+        $this->isMemLogged(true);
         // ALL ORDERS
         $data = $conditions = array(); 
         $uriSegment = 3;
@@ -132,7 +132,7 @@ class Dashboard extends MY_Controller
 
     public function order_detail($o_id)
     {
-        $this->isMemLogged(false);
+        $this->isMemLogged(true);
         $o_id = intval(doDecode($o_id));
         $this->data['order'] = (array)$this->master->get_data_row('orders', array('id' => $o_id));
         $this->load->view('user/order-detail', $this->data);
@@ -140,7 +140,7 @@ class Dashboard extends MY_Controller
 
     public function transactions()
     {
-        $this->isMemLogged(false);
+        $this->isMemLogged(true);
         // ALL ORDERS
         $data = $conditions = array(); 
         $uriSegment = 3;
@@ -174,14 +174,14 @@ class Dashboard extends MY_Controller
 
     public function support()
     {
-        $this->isMemLogged(false);
+        $this->isMemLogged(true);
         $this->data['faqs'] = $this->master->get_data_rows('faqs', array('status' => '1', 'type' => '1'));
         $this->load->view('user/support', $this->data);
     }
 
     function change_password()
     {
-        $this->isMemLogged(false);
+        $this->isMemLogged(true);
         if ($this->input->post()) {
             $res = array();
             $res['hide_msg'] = 0;
