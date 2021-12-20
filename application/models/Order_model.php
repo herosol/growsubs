@@ -132,24 +132,19 @@ class Order_model extends CRUD_Model
     function get_admin_orders()
     {
 
-        $this->db->select("o.*,
-         @product_total := IFNULL((select sum(qty*price) from tbl_order_detail where o_id = o.id), 0) as product_total, count(od.id) as product_count", FALSE);
-        $this->db->from($this->table_name.' o');
-        $this->db->join('order_detail od', 'od.o_id = o.id');
-        $this->db->group_by('o.id');
+        $this->db->select("*");
+        $this->db->from($this->table_name);
+        $this->db->order_by('order_status', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
-    function get_admin_order($oid)
+    function get_admin_order($order_id)
     {
 
-        $this->db->select("o.* ,
-         @product_total := IFNULL((select sum(qty*price) from tbl_order_detail where o_id = o.id), 0) as product_total, count(od.id) as product_count", FALSE);
-        $this->db->from($this->table_name.' o');
-        $this->db->join('order_detail od', 'od.o_id = o.id');
-        $this->db->where('o.id', $oid);
-        $this->db->group_by('o.id');
+        $this->db->select("*");
+        $this->db->from($this->table_name);
+        $this->db->where('id', $order_id);
         $query = $this->db->get();
         return $query->row();
     }

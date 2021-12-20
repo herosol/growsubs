@@ -59,12 +59,12 @@
 				</div>
 				<div class="progress-box relative flex">
 					<div class="blk">
-						<div class="circle_percent" data-percent="<?=calculatePer($order['no_of_views'], $order['new']==null?0:$order['new'])?>">
+						<div class="circle_percent" data-percent="<?=calculatePer($order['no_of_views'], $order['new_subs']==null?0:$order['new_subs'])?>">
 							<div class="circle_inner">
 								<div class="round_per"></div>
 							</div>
 						</div>
-						<p><?=$order['new']==null?0:$order['new']?>/<?=$order['no_of_views']?> <em>Completed Task</em></p>
+						<p><?=$order['new_subs']==null?0:$order['new_subs']?>/<?=$order['no_of_views']?> <em>Completed Task</em></p>
 
 					</div>
 				</div>

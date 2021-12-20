@@ -294,6 +294,14 @@ function new_messages()
     return intval($row->num_rows());
 }
 
+function new_orders()
+{
+    global $CI;
+    $CI->db->where('order_status', 0);
+    $row = $CI->db->get('orders');
+    return intval($row->num_rows());
+}
+
 function new_notifs()
 {
     global $CI;

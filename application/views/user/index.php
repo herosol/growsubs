@@ -84,7 +84,7 @@
                                 <div class="relative">
                                     <a href="<?=base_url('user/order-detail/'.doEncode($order['id']))?>" class="order-sub-lst blk flex relative">
                                         <div class="_inner-col order-id">
-                                            <h6><em>Order Id</em> <?=get_order_status($order['order_status'])?></h6>
+                                            <h6><em>Order Id</em> <?=get_order_status_user($order['order_status'])?></h6>
                                             <p><?=num_size($order['id'])?></p>
                                             
                                         </div>

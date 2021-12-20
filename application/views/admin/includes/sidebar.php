@@ -50,7 +50,7 @@
             <li class="opened <?= ($this->uri->segment(2) == 'orders') ? 'active' : '' ?>">
                 <a href="<?= site_url(ADMIN.'/orders') ?>">
                     <i class="fa fa-file"></i>
-                    <span class="title">Manage Orders</span>
+                    <span class="title">Manage Orders</span><span class="badge badge-info"><?=new_orders()?></span>
                 </a>
             </li>
             <li class="opened<?= $this->uri->segment('2') == 'contact' ? ' active' : '' ?>">

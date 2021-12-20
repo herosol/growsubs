@@ -279,10 +279,12 @@ function price_format($price)
     return number_format((float)$price, 2, '.', '');
 }
 
+// DO NOT CHANGE THE ORDER OF THE ARRAY VALUES, INDEXES ARE USING IN DATABASE i.e: 0 => New, 1 => Compledted, 2 => Cancelled
 function order_status()
 {
-    return ['New', 'In Progress', 'Completed', 'Delivered', 'Cancelled', 'Cleared'];
+    return ['New', 'Pending', 'In Progress', 'Completed', 'Cancelled'];
 }
+
 function proof_status()
 {
     return ['accepted', 'rejected', 'pending'];
@@ -575,20 +577,46 @@ function yes_no_status($status)
         return '<strong style="color:green;">No</strong>';
     }
 }
+
 function get_order_status_label($status)
 {
-    if ($status == 'New') {
+    if ($status == '0') {
         return '<span class="badge blue">New</span>';
-    } else if ($status == 'InProgress') {
+    } else if ($status == '1') {
+        return '<span class="badge gray">Pending</span>';
+    } else if ($status == '2') {
         return '<span class="badge yellow">In Progress</span>';
-    } else if ($status == 'Delivered') {
-        return '<span class="badge green">Delivered</span>';
-    } else if ($status == 'Completed') {
+    } else if ($status == '3') {
         return '<span class="badge green">Completed</span>';
-    } else if ($status == 'Cancelled') {
+    }
+    else if ($status == '4') {
         return '<span class="badge red">Cancelled</span>';
     }
 }
+
+function get_order_status_user($status)
+{
+    if ($status == '0' || $status == '1') {
+        return '<span class="badge blue">Pending</span>';
+    } else if ($status == '2') {
+        return '<span class="badge yellow">In Progress</span>';
+    } else if ($status == '3') {
+        return '<span class="badge green">Completed</span>';
+    }
+    else if ($status == '4') {
+        return '<span class="badge red">Cancelled</span>';
+    }
+}
+
+function get_order_payment_status($status)
+{
+    if ($status == '1') {
+        return '<span class="badge green">Cleared</span>';
+    } else if ($status == '0') {
+        return '<span class="badge red">Pending</span>';
+    }
+}
+
 function get_proof_status_label($status)
 {
     if ($status == 'pending') {
